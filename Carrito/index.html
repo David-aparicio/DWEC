@@ -1,24 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito vacío</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Carrito de la compra - agoodshop</h1>
+  <h1>Carrito de la compra - agoodshop</h1>
 
-  <h2>Productos disponibles</h2>
-  <div id="productos">
+  <div id="contenedor">
 
+    <div id="contenedorCarrito">
+      <h2>Productos disponibles</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Unidad</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
+
+    <div id="contenedorTotal">
+      <h2>Total</h2>
+      <div class="resumen">
+        <p><span>TOTAL</span> <span>0€</span></p>
+      </div>
+    </div>
   </div>
-
-  <h2>Tu carrito</h2>
-  <div id="carrito">
-
-  </div>
-
-  <script src="carrito.js"></script>
+  <script src="carrito.js" type="module"></script>
 </body>
+
 </html>
