@@ -9,9 +9,11 @@ productos o mostrarlos  */
 
 
 /* ns si esta bien pero algo asi seria con map -- */
+/*
 carrito.products = data.products.map(function(p) {
-return new Product(p.SKU, p.title, p.price);
+  return new Producto(p.SKU, p.title, p.price);
 });
+*/
 
 //data.products.forEach(function(p) {                                                      /**Uso el forEachh temporalmente pq me he dado cuenta que lo tengo que hacer con map pq luego pa sumar va a ser una liada */
   //carriton.añadirProducto(new Producto(p.SKU, p.title, p.price));                        /**Preguntar a anuar pq el price me lo devuelve como un String */
@@ -20,15 +22,106 @@ return new Product(p.SKU, p.title, p.price);
 
 
 
-console.log(carrito);
+
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const tbody = document.querySelector("#contenedorCarrito tbody");
+  const totalSpan = document.querySelector("#contenedorTotal .resumen span:last-child");
+
+  // Inserto productos en la tabla
+  data.products.forEach((p) => {
+    const producto = new Producto(p.SKU, p.title, p.price);
+
+
+
+    // Fila del producto disponible
+    const tr = document.createElement("tr");
 
 
 
 
-    document.addEventListener('DOMContentLoaded', function () {
+    // Columna nombre
+    const tdNombre = document.createElement("td");
+    tdNombre.textContent = producto.title;
 
 
 
 
 
-      });
+    // Columna botón 
+    const tdBotones = document.createElement("td");
+
+
+
+
+
+    
+    const btnRestar = document.createElement("button");
+    btnRestar.textContent = " - ";
+    btnRestar.classList.add("restarBtn");
+    tdBotones.appendChild(btnRestar);
+    
+    
+    const cajita = document.createElement("input");
+    cajita.type = "number";
+    cajita.readOnly = true;
+    cajita.value = "0";
+    cajita.classList.add("cajita");
+    tdBotones.appendChild(cajita);
+    
+
+    const btnSumar = document.createElement("button");
+        btnSumar.textContent = " + ";
+        btnSumar.classList.add("sumarBtn");
+        tdBotones.appendChild(btnSumar);
+        
+
+
+
+
+
+    //Columna Precio Unidad
+    const tdUnitario = document.createElement("td");
+    tdUnitario.textContent = `${producto.price} ${data.currency}`;
+    
+
+
+
+
+    //Columna Precio Total de la fila 
+    const tdPfila = document.createElement("td");
+    tdPfila.textContent = `${data.currency}`;
+    
+
+
+
+
+
+
+    // Insertar columnas en la fila
+    tr.append(tdNombre, tdBotones, tdUnitario,tdPfila);
+
+    
+
+
+
+
+    
+    // Botón añadir
+    tr.querySelector(".sumarBtn").addEventListener("click", () => {
+      carrito.añadirProducto(producto);
+      renderCarrito();
+    });
+    tr.querySelector(".restarBtn").addEventListener("click", () => {
+      carrito.eliminarProducto(producto);
+      renderCarrito();
+    })
+
+    tbody.appendChild(tr);
+  });
+  tdBotones.querySelector(".sumarBtn").addEventListener("click", clickSumar);
+  tdBotones.querySelector(".restarBtn").addEventListener("click", clickRestar);
+})
+
+
