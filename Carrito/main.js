@@ -43,6 +43,7 @@ carrito.products = data.products.map(function(p) {
 
     // Columna nombre
     const tdNombre = document.createElement("td");
+
     tdNombre.textContent = producto.title;
 
 
@@ -61,22 +62,31 @@ carrito.products = data.products.map(function(p) {
     btnRestar.textContent = " - ";
     btnRestar.classList.add("restarBtn");
     tdBotones.appendChild(btnRestar);
-    
+    /*
+    btnRestar.addEventListener("click",() = >{
+      
+      
+    });
+*/
     
     const cajita = document.createElement("input");
     cajita.type = "number";
     cajita.readOnly = true;
-    cajita.value = "0";
+    cajita.defaultValue = 0;
     cajita.classList.add("cajita");
     tdBotones.appendChild(cajita);
     
 
     const btnSumar = document.createElement("button");
-        btnSumar.textContent = " + ";
-        btnSumar.classList.add("sumarBtn");
-        tdBotones.appendChild(btnSumar);
-        
+    btnSumar.textContent = " + ";
+    btnSumar.classList.add("sumarBtn");
+    tdBotones.appendChild(btnSumar);
+    
+    btnSumar.addEventListener('click',() =>{
 
+      cajita.value++;
+
+    });
 
 
 
@@ -98,7 +108,6 @@ carrito.products = data.products.map(function(p) {
 
 
 
-
     // Insertar columnas en la fila
     tr.append(tdNombre, tdBotones, tdUnitario,tdPfila);
 
@@ -108,20 +117,12 @@ carrito.products = data.products.map(function(p) {
 
 
     
-    // Botón añadir
-    tr.querySelector(".sumarBtn").addEventListener("click", () => {
-      carrito.añadirProducto(producto);
-      renderCarrito();
-    });
-    tr.querySelector(".restarBtn").addEventListener("click", () => {
-      carrito.eliminarProducto(producto);
-      renderCarrito();
-    })
+
+    
 
     tbody.appendChild(tr);
   });
-  tdBotones.querySelector(".sumarBtn").addEventListener("click", clickSumar);
-  tdBotones.querySelector(".restarBtn").addEventListener("click", clickRestar);
-})
+
+});
 
 
