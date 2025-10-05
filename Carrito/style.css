@@ -67,3 +67,36 @@ table th {
   justify-content: space-between;
   font-weight: bold;
 }
+.restarBtn,
+.sumarBtn {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  line-height: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.restarBtn:hover,
+.sumarBtn:hover {
+  border-color: #888;
+  background-color: #f5f5f5;
+}
+
+.restarBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cajita {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  height: 30px;
+  margin: 0 5px;
+}

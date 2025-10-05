@@ -16,7 +16,7 @@ carrito.products = data.products.map(function(p) {
 */
 
 //data.products.forEach(function(p) {                                                      /**Uso el forEachh temporalmente pq me he dado cuenta que lo tengo que hacer con map pq luego pa sumar va a ser una liada */
-  //carriton.añadirProducto(new Producto(p.SKU, p.title, p.price));                        /**Preguntar a anuar pq el price me lo devuelve como un String */
+//carriton.añadirProducto(new Producto(p.SKU, p.title, p.price));                        /**Preguntar a anuar pq el price me lo devuelve como un String */
 //});
 
 
@@ -25,7 +25,7 @@ carrito.products = data.products.map(function(p) {
 
 
 
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const tbody = document.querySelector("#contenedorCarrito tbody");
   const totalSpan = document.querySelector("#contenedorTotal .resumen span:last-child");
 
@@ -54,74 +54,82 @@ carrito.products = data.products.map(function(p) {
     const tdBotones = document.createElement("td");
 
 
-
-
-
     
+
+
     const btnRestar = document.createElement("button");
     btnRestar.textContent = " - ";
     btnRestar.classList.add("restarBtn");
+    btnRestar.disabled = true;
     tdBotones.appendChild(btnRestar);
-    /*
-    btnRestar.addEventListener("click",() = >{
-      
-      
-    });
-*/
-    
-    const cajita = document.createElement("input");
+
+
+    btnRestar.addEventListener("click", () => {
+  if (Number(cajita.value) > 0) {
+    cajita.value--;
+    if (Number(cajita.value) === 0) {
+      btnRestar.disabled = true; // 🔹 
+    }
+  }
+
+  });
+
+
+const cajita = document.createElement("input");
     cajita.type = "number";
     cajita.readOnly = true;
-    cajita.defaultValue = 0;
+    cajita.value = 0;
     cajita.classList.add("cajita");
     tdBotones.appendChild(cajita);
-    
-
-    const btnSumar = document.createElement("button");
-    btnSumar.textContent = " + ";
-    btnSumar.classList.add("sumarBtn");
-    tdBotones.appendChild(btnSumar);
-    
-    btnSumar.addEventListener('click',() =>{
-
-      cajita.value++;
-
-    });
 
 
 
+  const btnSumar = document.createElement("button");
+  btnSumar.textContent = " + ";
+  btnSumar.classList.add("sumarBtn");
+  tdBotones.appendChild(btnSumar);
 
-    //Columna Precio Unidad
-    const tdUnitario = document.createElement("td");
-    tdUnitario.textContent = `${producto.price} ${data.currency}`;
-    
+  btnSumar.addEventListener('click', () => {
 
+    cajita.value++;
+    btnRestar.disabled = false;
 
-
-
-    //Columna Precio Total de la fila 
-    const tdPfila = document.createElement("td");
-    tdPfila.textContent = `${data.currency}`;
-    
-
-
-
-
-
-    // Insertar columnas en la fila
-    tr.append(tdNombre, tdBotones, tdUnitario,tdPfila);
-
-    
-
-
-
-
-    
-
-    
-
-    tbody.appendChild(tr);
   });
+
+
+
+
+  //Columna Precio Unidad
+  const tdUnitario = document.createElement("td");
+  tdUnitario.textContent = `${producto.price} ${data.currency}`;
+
+
+
+
+
+  //Columna Precio Total de la fila 
+  const tdPfila = document.createElement("td");
+  tdPfila.textContent = `${data.currency}`;
+
+
+
+
+
+
+  // Insertar columnas en la fila
+  tr.append(tdNombre, tdBotones, tdUnitario, tdPfila);
+
+
+
+
+
+
+
+
+
+
+  tbody.appendChild(tr);
+});
 
 });
 
