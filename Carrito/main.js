@@ -27,7 +27,23 @@ carrito.products = data.products.map(function(p) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const tbody = document.querySelector("#contenedorCarrito tbody");
-  const totalSpan = document.querySelector("#contenedorTotal .resumen span:last-child");
+  const resumenDiv = document.querySelector("#contenedorTotal .resumen");
+
+
+  
+  //  Crear solo una etiqueta <p> para el total del carrito
+  const totalTexto = document.createElement("p");
+  totalTexto.textContent = `Total: 0 ${data.currency}`;
+  resumenDiv.appendChild(totalTexto);
+
+  // Función para actualizar el total general del carrito
+  function actualizarResumen() {
+    totalTexto.textContent = `Total: ${carrito.calcularTotal().toFixed(2)} ${data.currency}`;
+  }
+  
+
+  
+
 
   // Inserto productos en la tabla
   data.products.forEach((p) => {
@@ -54,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tdBotones = document.createElement("td");
 
 
-    
+
 
 
     const btnRestar = document.createElement("button");
@@ -64,72 +80,89 @@ document.addEventListener("DOMContentLoaded", () => {
     tdBotones.appendChild(btnRestar);
 
 
-    btnRestar.addEventListener("click", () => {
-  if (Number(cajita.value) > 0) {
-    cajita.value--;
-    if (Number(cajita.value) === 0) {
-      btnRestar.disabled = true; // 🔹 
-    }
-  }
-
-  });
 
 
-const cajita = document.createElement("input");
+
+    const cajita = document.createElement("input");
     cajita.type = "number";
     cajita.readOnly = true;
-    cajita.value = 0;
+    cajita.defaultValue = 0;
     cajita.classList.add("cajita");
     tdBotones.appendChild(cajita);
 
 
 
-  const btnSumar = document.createElement("button");
-  btnSumar.textContent = " + ";
-  btnSumar.classList.add("sumarBtn");
-  tdBotones.appendChild(btnSumar);
+    const btnSumar = document.createElement("button");
+    btnSumar.textContent = " + ";
+    btnSumar.classList.add("sumarBtn");
+    tdBotones.appendChild(btnSumar);
 
-  btnSumar.addEventListener('click', () => {
 
-    cajita.value++;
-    btnRestar.disabled = false;
+
+
+
+    //Columna Precio Unidad
+    const tdUnitario = document.createElement("td");
+    tdUnitario.textContent = `${producto.price} ${data.currency}`;
+
+
+
+
+
+    //Columna Precio Total de la fila 
+    const tdPfila = document.createElement("td");
+    if (Number(cajita.value) === 0) {
+      tdPfila.textContent = `0${data.currency}`
+    }
+
+
+
+
+
+
+
+    // Insertar columnas en la fila
+    tr.append(tdNombre, tdBotones, tdUnitario, tdPfila);
+
+
+
+    tbody.appendChild(tr);
+
+
+
+
+    function actualizarTotal() {
+      const cantidad = Number(cajita.value);
+      const totalCalculado = cantidad * p.price;
+      tdPfila.textContent = `${totalCalculado.toFixed(2)}${data.currency}`; //tofixed 2 para dos decimales
+    }
+
+    btnRestar.addEventListener("click", () => {
+      if (Number(cajita.value) > 0) {
+        cajita.value--;
+        actualizarTotal();
+        actualizarResumen();
+        if (Number(cajita.value) === 0) {
+          btnRestar.disabled = true;
+        }
+
+      }
+
+    });
+
+
+    btnSumar.addEventListener('click', () => {
+
+      cajita.value++;
+      btnRestar.disabled = false;
+      actualizarTotal();
+      carrito.añadirProducto(producto); /*Cada vez que se pulsa el boton de sumar, se añade el producto al carrito */
+      actualizarResumen();
+    });
+
+
 
   });
-
-
-
-
-  //Columna Precio Unidad
-  const tdUnitario = document.createElement("td");
-  tdUnitario.textContent = `${producto.price} ${data.currency}`;
-
-
-
-
-
-  //Columna Precio Total de la fila 
-  const tdPfila = document.createElement("td");
-  tdPfila.textContent = `${data.currency}`;
-
-
-
-
-
-
-  // Insertar columnas en la fila
-  tr.append(tdNombre, tdBotones, tdUnitario, tdPfila);
-
-
-
-
-
-
-
-
-
-
-  tbody.appendChild(tr);
-});
 
 });
 

@@ -22,20 +22,18 @@ class Carrito {
   constructor(currency) { /*Pongo en el constructor solo la divisa ya que el carrito se crea sin productos inicialmente, luego añadire ya un metodo para añadir esos productos al carrito */
     this.currency = currency;
     this.products = []; /*array de productos vacio pq inicialmente no hay nada*/
+    this.total = 0; /*total del carrito inicialmente a 0 */
   }
 
   añadirProducto(nuevoProducto) {
     this.products.push(nuevoProducto);
+    this.total += nuevoProducto.price; /*cada vez que añado un producto al carrito, el total se incrementa en el precio de ese producto */                
   }
-  /*
-  De momento no voy a usar este metodo 
-  getTotal() {
-    return this.products.reduce(function (p, p2) {
-      return p + p2;
-    })
+  calcularTotal(){
+    return this.total;
   }
-    
-  */
+  
+  
 }
 
 export { Carrito, Producto };
