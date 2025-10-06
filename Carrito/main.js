@@ -1,55 +1,31 @@
 import { data } from "./objetos.js";
 import { Carrito, Producto } from "./carrito.js"; /*Importo la clase carrito y producto que he creado antes */
 
-const carrito = new Carrito(data.currency); /*Creo el constructor carrito y lo relleno con currency pq de momento no hay productos */
-
-
-/*Debo hacerlo mejor con map que for each pq necesito generar un array de productos limpio que lo puedo usar para sumar los 
-productos o mostrarlos  */
-
-
-/* ns si esta bien pero algo asi seria con map -- */
-/*
-carrito.products = data.products.map(function(p) {
-  return new Producto(p.SKU, p.title, p.price);
-});
-*/
-
-//data.products.forEach(function(p) {                                                      /**Uso el forEachh temporalmente pq me he dado cuenta que lo tengo que hacer con map pq luego pa sumar va a ser una liada */
-//carriton.añadirProducto(new Producto(p.SKU, p.title, p.price));                        /**Preguntar a anuar pq el price me lo devuelve como un String */
-//});
-
-
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const tbody = document.querySelector("#contenedorCarrito tbody");
   const resumenDiv = document.querySelector("#contenedorTotal .resumen");
 
+const carrito = new Carrito(data.currency); /*Creo el constructor carrito y lo relleno con currency pq de momento no hay productos */
 
-  
+
+
   //  Crear solo una etiqueta <p> para el total del carrito
   const totalTexto = document.createElement("p");
-  totalTexto.textContent = `Total: 0 ${data.currency}`;
+  totalTexto.textContent = `Total: 0.00 ${data.currency}`;
   resumenDiv.appendChild(totalTexto);
 
   // Función para actualizar el total general del carrito
   function actualizarResumen() {
-    totalTexto.textContent = `Total: ${carrito.calcularTotal().toFixed(2)} ${data.currency}`;
+    totalTexto.textContent = `Total: ${carrito.calcularTotal().toFixed(2)} ${carrito.currency}`;
   }
-  
-
-  
 
 
   // Inserto productos en la tabla
   data.products.forEach((p) => {
     const producto = new Producto(p.SKU, p.title, p.price);
 
-
+  carrito.registrarProducto(producto);
 
     // Fila del producto disponible
     const tr = document.createElement("tr");
@@ -70,9 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const tdBotones = document.createElement("td");
 
 
-
-
-
     const btnRestar = document.createElement("button");
     btnRestar.textContent = " - ";
     btnRestar.classList.add("restarBtn");
@@ -86,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cajita = document.createElement("input");
     cajita.type = "number";
     cajita.readOnly = true;
-    cajita.defaultValue = 0;
+    cajita.value = producto.cantidad;
     cajita.classList.add("cajita");
     tdBotones.appendChild(cajita);
 
@@ -103,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Columna Precio Unidad
     const tdUnitario = document.createElement("td");
-    tdUnitario.textContent = `${producto.price} ${data.currency}`;
+    tdUnitario.textContent = `${producto.price.toFixed(2)} ${data.currency}`;
 
 
 
@@ -111,9 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Columna Precio Total de la fila 
     const tdPfila = document.createElement("td");
-    if (Number(cajita.value) === 0) {
-      tdPfila.textContent = `0${data.currency}`
-    }
+    tdPfila.textContent = `${producto.total.toFixed(2)}${carrito.currency}`;
 
 
 
@@ -131,33 +102,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    function actualizarTotal() {
-      const cantidad = Number(cajita.value);
-      const totalCalculado = cantidad * p.price;
-      tdPfila.textContent = `${totalCalculado.toFixed(2)}${data.currency}`; //tofixed 2 para dos decimales
+    function actualizarFila() {
+      cajita.value = producto.cantidad;
+      tdPfila.textContent = `${producto.total.toFixed(2)} ${carrito.currency}`;
+      btnRestar.disabled = producto.cantidad === 0;
+      actualizarResumen();
     }
 
     btnRestar.addEventListener("click", () => {
-      if (Number(cajita.value) > 0) {
-        cajita.value--;
-        actualizarTotal();
-        actualizarResumen();
-        if (Number(cajita.value) === 0) {
-          btnRestar.disabled = true;
-        }
-
+      carrito.quitarProducto(producto);
+      actualizarFila();
       }
 
-    });
+    );
 
 
     btnSumar.addEventListener('click', () => {
-
-      cajita.value++;
-      btnRestar.disabled = false;
-      actualizarTotal();
-      carrito.añadirProducto(producto); /*Cada vez que se pulsa el boton de sumar, se añade el producto al carrito */
-      actualizarResumen();
+      carrito.añadirProducto(producto);
+      actualizarFila()
     });
 
 
