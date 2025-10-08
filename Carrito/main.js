@@ -15,10 +15,35 @@ const carrito = new Carrito(data.currency); /*Creo el constructor carrito y lo r
   totalTexto.textContent = `Total: 0.00 ${data.currency}`;
   resumenDiv.appendChild(totalTexto);
 
-  // Función para actualizar el total general del carrito
-  function actualizarResumen() {
-    totalTexto.textContent = `Total: ${carrito.calcularTotal().toFixed(2)} ${carrito.currency}`;
-  }
+
+
+
+function actualizarResumen() {
+  // Limpiar resumen
+  resumenDiv.innerHTML = '';
+
+  // Mostrar cada producto con cantidad > 0
+  carrito.products.forEach(producto => {
+    if (producto.cantidad > 0) {
+      const div = document.createElement('div'); // div para cada producto
+      div.textContent = `${producto.title} x ${producto.cantidad}`;
+      resumenDiv.appendChild(div); // añadir al resumen
+    }
+  });
+
+  // Mostrar total general al final
+  const totalTexto = document.createElement('p');
+  totalTexto.style.fontWeight = 'bold'; // opcional, resaltar total
+  totalTexto.style.fontSize = '30px';
+  totalTexto.textContent = `Total: ${carrito.calcularTotal().toFixed(2)} ${carrito.currency}`;
+  resumenDiv.appendChild(totalTexto);
+}
+
+
+
+
+
+
 
 
   // Inserto productos en la tabla
@@ -119,7 +144,9 @@ const carrito = new Carrito(data.currency); /*Creo el constructor carrito y lo r
 
     btnSumar.addEventListener('click', () => {
       carrito.añadirProducto(producto);
-      actualizarFila()
+      actualizarFila();
+
+
     });
 
 

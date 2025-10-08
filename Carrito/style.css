@@ -57,16 +57,17 @@ table th {
   border: 1px solid #eee;
   height: fit-content;
 }
-
 #contenedorTotal .resumen {
   margin-top: 15px;
   border-top: 1px solid #ddd;
   padding-top: 10px;
   font-size: 18px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* productos en columna */
+  gap: 8px; /* separación entre productos */
   font-weight: bold;
 }
+
 .restarBtn,
 .sumarBtn {
   background-color: white;

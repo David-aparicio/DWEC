@@ -38,7 +38,7 @@ class Carrito {
 
   registrarProducto(producto) { //Metodo para asegurarme de que el producto este dentro del carrito y gaurde la referencia del producto en el map
     if (!this.products.has(producto.sku)) { //Compruebo si el producto ya esta registrado en el map mirando con HAS que me devuelve un TRUE
-      producto.cantidad = producto.cantidad || 0; //Me aseguro de que la cantidad siempre exista y empiece en 0 cuando reigistro uno nuevo
+      producto.cantidad = producto.cantidad || 0; //Me aseguro de que la cantidad siempre exista y empiece en 0 cuando reigistro uno nuevo 
       this.products.set(producto.sku, producto); //quedaria con el sku: 0001, y el producto. Con SET LO AÑADO 
     }
   }
