@@ -1,18 +1,35 @@
-import { data } from "./objetos.js";
-import { Carrito, Producto } from "./carrito.js"; /*Importo la clase carrito y producto que he creado antes */
 
+import  Carrito from "./carrito.js"; /*Importo la clase carrito y producto que he creado antes */
+
+const productMap = new Map();
+let moneda = "";
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  fetch('http://localhost:8080/api/carrito')
+    .then(response => response.json())
+    .then(data =>{
+      moneda = data.currency;
+      data.products.forEach(producto =>{
+        productMap.set(producto.sku, producto);
+    })
+      arrancar();
+
+    });
+    
+  });
+
   const tbody = document.querySelector("#contenedorCarrito tbody");
   const resumenDiv = document.querySelector("#contenedorTotal .resumen");
 
-const carrito = new Carrito(data.currency); /*Creo el constructor carrito y lo relleno con currency pq de momento no hay productos */
+const carrito = new Carrito(); /*Creo el constructor carrito y lo relleno con currency pq de momento no hay productos */
 
+let totalcompra = 0;
 
 
   //  Crear solo una etiqueta <p> para el total del carrito
   const totalTexto = document.createElement("p");
-  totalTexto.textContent = `Total: 0.00 ${data.currency}`;
+  totalTexto.textContent = totalcompra;
   resumenDiv.appendChild(totalTexto);
 
 
@@ -40,17 +57,11 @@ function actualizarResumen() {
 }
 
 
+function arrancar(){
 
+  productMap.forEach((producto, sku) => {
+    
 
-
-
-
-
-  // Inserto productos en la tabla
-  data.products.forEach((p) => {
-    const producto = new Producto(p.SKU, p.title, p.price);
-
-  carrito.registrarProducto(producto);
 
     // Fila del producto disponible
     const tr = document.createElement("tr");
@@ -74,7 +85,6 @@ function actualizarResumen() {
     const btnRestar = document.createElement("button");
     btnRestar.textContent = " - ";
     btnRestar.classList.add("restarBtn");
-    btnRestar.disabled = true;
     tdBotones.appendChild(btnRestar);
 
 
@@ -101,7 +111,8 @@ function actualizarResumen() {
 
     //Columna Precio Unidad
     const tdUnitario = document.createElement("td");
-    tdUnitario.textContent = `${producto.price.toFixed(2)} ${data.currency}`;
+    tdUnitario.textContent = producto.price;
+    
 
 
 
@@ -109,7 +120,7 @@ function actualizarResumen() {
 
     //Columna Precio Total de la fila 
     const tdPfila = document.createElement("td");
-    tdPfila.textContent = `${producto.total.toFixed(2)}${carrito.currency}`;
+    tdPfila.textContent = cajita.value * (producto.price).valueAsNumber;
 
 
 
@@ -135,16 +146,49 @@ function actualizarResumen() {
     }
 
     btnRestar.addEventListener("click", () => {
-      carrito.quitarProducto(producto);
-      actualizarFila();
+      
+        const producto = {
+          sku: "",
+          titulo:"",
+          precio:"",
+          cantidad:""
+        }
+
+        cajita.value--;
+
+        if(cajita.value <=0){
+          cajita.value = 0;
+        }
+
+        producto.sku = sku;
+        producto.title = tdNombre.textContent;
+        producto.precio = tdUnitario.textContent;
+        producto.cantidad = cajita.value;
+
+        carrito.registrarProducto(sku, producto);
+        totalcompra -= producto.precio;
       }
 
     );
 
 
     btnSumar.addEventListener('click', () => {
-      carrito.añadirProducto(producto);
-      actualizarFila();
+      const producto = {
+          sku: "",
+          titulo:"",
+          precio:"",
+          cantidad:""
+        }
+
+        cajita.value++;
+
+        producto.sku = sku;
+        producto.title = tdNombre.textContent;
+        producto.precio = tdUnitario.textContent;
+        producto.cantidad = cajita.value;
+
+        carrito.registrarProducto(sku, producto);
+        totalcompra += producto.precio;
 
 
     });
@@ -153,6 +197,16 @@ function actualizarResumen() {
 
   });
 
-});
 
 
+
+
+
+}
+
+
+
+
+
+  // Inserto productos en la tabla
+  
