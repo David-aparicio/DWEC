@@ -56,153 +56,94 @@ function actualizarResumen() {
   resumenDiv.appendChild(totalTexto);
 }
 
-
-function arrancar(){
-
+function arrancar() {
   productMap.forEach((producto, sku) => {
-    
-
-
-    // Fila del producto disponible
     const tr = document.createElement("tr");
-
-
-
 
     // Columna nombre
     const tdNombre = document.createElement("td");
-
     tdNombre.textContent = producto.title;
 
-
-
-
-
-    // Columna botón 
+    // Columna botones
     const tdBotones = document.createElement("td");
-
 
     const btnRestar = document.createElement("button");
     btnRestar.textContent = " - ";
     btnRestar.classList.add("restarBtn");
     tdBotones.appendChild(btnRestar);
 
-
-
-
-
     const cajita = document.createElement("input");
     cajita.type = "number";
     cajita.readOnly = true;
-    cajita.value = producto.cantidad;
+    cajita.value = 0;
     cajita.classList.add("cajita");
     tdBotones.appendChild(cajita);
-
-
 
     const btnSumar = document.createElement("button");
     btnSumar.textContent = " + ";
     btnSumar.classList.add("sumarBtn");
     tdBotones.appendChild(btnSumar);
 
-
-
-
-
-    //Columna Precio Unidad
+    // Columna precio unitario
     const tdUnitario = document.createElement("td");
-    tdUnitario.textContent = producto.price;
-    
+    const precioUnitario = parseFloat(producto.price);
+    tdUnitario.textContent = `${precioUnitario.toFixed(2)} ${moneda}`;
 
-
-
-
-
-    //Columna Precio Total de la fila 
+    // Columna precio total de la fila
     const tdPfila = document.createElement("td");
-    tdPfila.textContent = cajita.value * (producto.price).valueAsNumber;
+    tdPfila.textContent = "0.00 " + moneda;
 
-
-
-
-
-
-
-    // Insertar columnas en la fila
+    // Insertar columnas
     tr.append(tdNombre, tdBotones, tdUnitario, tdPfila);
-
-
-
     tbody.appendChild(tr);
 
-
-
-
-    function actualizarFila() {
-      cajita.value = producto.cantidad;
-      tdPfila.textContent = `${producto.total.toFixed(2)} ${carrito.currency}`;
-      btnRestar.disabled = producto.cantidad === 0;
-      actualizarResumen();
-    }
-
+    // --- EVENTOS ---
     btnRestar.addEventListener("click", () => {
-      
-        const producto = {
-          sku: "",
-          titulo:"",
-          precio:"",
-          cantidad:""
-        }
+      let cantidad = parseInt(cajita.value);
+      if (cantidad > 0) cantidad--;
+      cajita.value = cantidad;
 
-        cajita.value--;
+      carrito.registrarProducto(sku, {
+        sku,
+        title: producto.title,
+        precio: precioUnitario,
+        cantidad: cantidad
+      });
 
-        if(cajita.value <=0){
-          cajita.value = 0;
-        }
+      // Actualizar precio total de la fila
+      const totalFila = cantidad * precioUnitario;
+      tdPfila.textContent = totalFila.toFixed(2) + " " + moneda;
 
-        producto.sku = sku;
-        producto.title = tdNombre.textContent;
-        producto.precio = tdUnitario.textContent;
-        producto.cantidad = cajita.value;
-
-        carrito.registrarProducto(sku, producto);
-        totalcompra -= producto.precio;
-      }
-
-    );
-
-
-    btnSumar.addEventListener('click', () => {
-      const producto = {
-          sku: "",
-          titulo:"",
-          precio:"",
-          cantidad:""
-        }
-
-        cajita.value++;
-
-        producto.sku = sku;
-        producto.title = tdNombre.textContent;
-        producto.precio = tdUnitario.textContent;
-        producto.cantidad = cajita.value;
-
-        carrito.registrarProducto(sku, producto);
-        totalcompra += producto.precio;
-
-
+      actualizarResumen();
     });
 
+    btnSumar.addEventListener("click", () => {
+      let cantidad = parseInt(cajita.value);
+      cantidad++;
+      cajita.value = cantidad;
 
+      carrito.registrarProducto(sku, {
+        sku,
+        title: producto.title,
+        precio: precioUnitario,
+        cantidad: cantidad
+      });
 
+      // Actualizar precio total de la fila
+      const totalFila = cantidad * precioUnitario;
+      tdPfila.textContent = totalFila.toFixed(2) + " " + moneda;
+
+      actualizarResumen();
+    });
   });
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
 
 
 
