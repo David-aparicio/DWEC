@@ -1,17 +1,4 @@
 
-/*  
-console.log("Moneda:", data.currency);
-
-
-
-data.products.forEach((producto) => {
-  console.log(
-    `SKU: ${producto.SKU} | ${producto.title} - ${producto.price} ${data.currency}`
-  );
-});
-*/
-
-
 export default class Carrito {
   constructor() { /*Pongo en el constructor solo la divisa ya que el carrito se crea sin productos inicialmente, luego añadire ya un metodo para añadir esos productos al carrito */
     this.products = new Map(); /*Voy a usar Map para que no haya productos repetidos, asi cuando añada  un producto solo aumente el valor de la cantidad

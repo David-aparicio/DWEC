@@ -1,5 +1,5 @@
 
-import  Carrito from "./carrito.js"; /*Importo la clase carrito y producto que he creado antes */
+import  Carrito from "./carrito.js"; /*Importo la clase carrito que he creado antes */
 
 const productMap = new Map();
 let moneda = "";
@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const carrito = new Carrito(); /*Creo el constructor carrito y lo relleno con currency pq de momento no hay productos */
 
-let totalcompra = 0;
+let totalcompra = 'Total: 0.00€';
 
 
-  //  Crear solo una etiqueta <p> para el total del carrito
+
   const totalTexto = document.createElement("p");
   totalTexto.textContent = totalcompra;
   resumenDiv.appendChild(totalTexto);
@@ -36,25 +36,35 @@ let totalcompra = 0;
 
 
 function actualizarResumen() {
-  // Limpiar resumen
+  // Limpia el contenido anterior del resumen
   resumenDiv.innerHTML = '';
 
-  // Mostrar cada producto con cantidad > 0
-  carrito.products.forEach(producto => {
+  let total = 0;
+
+
+  carrito.products.forEach((producto, sku) => {
+
     if (producto.cantidad > 0) {
-      const div = document.createElement('div'); // div para cada producto
-      div.textContent = `${producto.title} x ${producto.cantidad}`;
-      resumenDiv.appendChild(div); // añadir al resumen
+      const subtotal = producto.precio * producto.cantidad;
+      total += subtotal;
+
+      // Creo un elemento <p> para cada producto
+      const linea = document.createElement('p');
+      linea.textContent = `${producto.title} x${producto.cantidad} = ${subtotal.toFixed(2)} ${moneda}`;
+      resumenDiv.appendChild(linea);
     }
   });
 
-  // Mostrar total general al final
+  
+  const hr = document.createElement('hr');
+  resumenDiv.appendChild(hr);
+
+
   const totalTexto = document.createElement('p');
-  totalTexto.style.fontWeight = 'bold'; // opcional, resaltar total
-  totalTexto.style.fontSize = '30px';
-  totalTexto.textContent = `Total: ${carrito.calcularTotal().toFixed(2)} ${carrito.currency}`;
+  totalTexto.innerHTML = `Total: ${total.toFixed(2)} ${moneda}`;
   resumenDiv.appendChild(totalTexto);
 }
+
 
 function arrancar() {
   productMap.forEach((producto, sku) => {
@@ -63,6 +73,9 @@ function arrancar() {
     // Columna nombre
     const tdNombre = document.createElement("td");
     tdNombre.textContent = producto.title;
+    const tiSKU = document.createElement("p");
+    tiSKU.textContent = producto.sku;
+    tdNombre.appendChild(tiSKU);
 
     // Columna botones
     const tdBotones = document.createElement("td");
@@ -145,9 +158,3 @@ function arrancar() {
 
 
 
-
-
-
-
-  // Inserto productos en la tabla
-  
