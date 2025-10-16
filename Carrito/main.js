@@ -110,7 +110,7 @@ function arrancar() {
     tr.append(tdNombre, tdBotones, tdUnitario, tdPfila);
     tbody.appendChild(tr);
 
-    // --- EVENTOS ---
+    
     btnRestar.addEventListener("click", () => {
       let cantidad = parseInt(cajita.value);
       if (cantidad > 0) cantidad--;

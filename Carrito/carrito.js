@@ -8,7 +8,7 @@ export default class Carrito {
 
 
   registrarProducto(sku,producto) { //Metodo para asegurarme de que el producto este dentro del carrito y gaurde la referencia del producto en el map
-     //Compruebo si el producto ya esta registrado en el map mirando con HAS que me devuelve un TRUE
+
        //Me aseguro de que la cantidad siempre exista y empiece en 0 cuando reigistro uno nuevo
        
        if(producto.cantidad == 0){
