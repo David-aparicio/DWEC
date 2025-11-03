@@ -1,0 +1,11 @@
+<figure><img 
+    [src]="arrayImagenes[imgagenActual].url" 
+    [alt]="arrayImagenes[imgagenActual].alt" 
+    class="m-20 p-20 img-fluid">
+<figcaption>{{arrayImagenes [imgagenActual].title }}</figcaption>
+<div>
+    <button (click)="anterior()" class="btn btn-primary">←</button>
+    <button (click)="siguiente()" class="btn btn-secondary"> →</button>
+</div>
+
+</figure>
