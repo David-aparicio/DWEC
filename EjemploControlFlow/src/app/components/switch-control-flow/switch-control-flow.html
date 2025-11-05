@@ -1,0 +1,26 @@
+<nav>
+    <ul class="menu">
+        @switch (rol) {
+            @case ("admin"){
+                    <li><a href="">Crear nuevo</a></li>
+                    <li><a href="">Ver Listado</a></li>
+                    <li><a href="">Crear usuarios</a></li>
+                    <li><a href="">Borrar usuarios</a></li>
+                }
+            @case ("editor"){
+                    <li><a href="">Crear y editar contenido</a></li>
+                    <li><a href="">Revisar artículos pendientes</a></li>
+                }
+            @case ("suscriptor"){
+                    <li>Ver contenido exclusivo</li>
+                    <li>Gestionar suscripción</li>
+                }
+            @case ("otros") {
+                    <li>Ver contenido público</li>
+            }
+            @default {
+                    <li>No tienes acceso a ninguna opción del menú.</li>
+            }
+        }
+    </ul>
+</nav>
