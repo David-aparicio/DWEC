@@ -1,0 +1,22 @@
+.navbar {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #0d6efd; /* Azul de Bootstrap */
+}
+
+.navbar-brand {
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    padding-top: 1rem;
+  }
+}
