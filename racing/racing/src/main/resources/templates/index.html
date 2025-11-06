@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Racing de Santander - Inicio</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="/static/css/estilos.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">Real Racing Club</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/conocenos">Conócenos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/historia">Historia</a></li>
+        <li class="nav-item"><a class="nav-link" href="/plantilla">Plantilla</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero d-flex justify-content-center align-items-center text-center text-white">
+    <div class="hero-content">
+        <h1 class="display-4 fw-bold">Real Racing Club</h1>
+        <p class="lead">Orgullo de Cantabria desde 1913</p>
+        <a href="/conocenos" class="btn btn-light btn-lg mt-3">Conócenos</a>
+    </div>
+</header>
+
+<!-- SECCIÓN DE TARJETAS (para imágenes que tú pongas) -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Galería destacada</h2>
+
+    <div class="row g-4">
+
+        <!-- Tarjeta 1 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="static/img/estadio.jpeg" class="card-img-top" alt="Estadio del Racing">
+                <div class="card-body">
+                    <h5 class="card-title">El Sardinero</h5>
+                    <p class="card-text">La casa del Racing desde hace más de un siglo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="/static/img/aficion.jpg" class="card-img-top" alt="Afición del Racing">
+                <div class="card-body">
+                    <h5 class="card-title">Nuestra afición</h5>
+                    <p class="card-text">Una de las más fieles y pasionales del fútbol español.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="/static/img/escudo.jpg" class="card-img-top" alt="Escudo del Racing">
+                <div class="card-body">
+                    <h5 class="card-title">El escudo</h5>
+                    <p class="card-text">Símbolo de historia, identidad y orgullo cántabro.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+</body>
+
+<footer class="bg-dark text-white text-center py-3 mt-auto">
+    <p class="m-0">© 2025 Real Racing Club de Santander</p>
+</footer>
+</html>
