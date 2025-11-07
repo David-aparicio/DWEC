@@ -4,57 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conócenos - Real Racing Club</title>
+    <link rel="icon" type="image/png" href="/img/escudoracing.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/estilos.css">
 </head>
-<body class="d-flex flex-column min-vh-100">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="/">Real Racing Club</a>
+<body class="bg-light">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm py-3">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-3" href="/">Real Racing Club</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="/conocenos">Conócenos</a></li>
-        <li class="nav-item"><a class="nav-link" href="/historia">Historia</a></li>
-        <li class="nav-item"><a class="nav-link" href="/plantilla">Plantilla</a></li>
-        <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
-      </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto gap-3 fs-5">
+                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/conocenos">Conócenos</a></li>
+                <li class="nav-item"><a class="nav-link" href="/historia">Historia</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 
+<!-- HERO -->
+<header class="section-hero-small d-flex align-items-center">
+    <div class="container text-center text-black">
+        <h1 class="display-3 fw-bold">Conócenos</h1>
+        <p class="lead fs-4">Pasión, historia y orgullo racinguista</p>
+    </div>
+</header>
 
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Conócenos</h1>
-
-    <p class="lead text-center">
-        El Real Racing Club de Santander es uno de los clubes históricos del fútbol español, 
-        con más de 110 años de historia y una afición que lo acompaña en cada etapa.
-    </p>
-
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <img src="/racing/src/main/resources/static/img/estadio.jpeg" class="img-fluid rounded shadow" alt="Estadio del Racing">
+<!-- QUIÉNES SOMOS -->
+<section class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4">
+            <img src="https://www.2playbook.com/uploads/s1/27/13/93/real-racing-club-laliga-smartbank-permanencia-2023.jpeg" class="img-fluid rounded shadow-lg">
         </div>
-        <div class="col-md-6 d-flex align-items-center">
-            <p>
-                Fundado en 1913, el Racing ha competido en las principales categorías del fútbol nacional 
-                y ha vivido momentos inolvidables. Su estadio, El Sardinero, es un símbolo del club 
-                y un punto de encuentro para toda Cantabria.
-            </p>
+        <div class="col-md-6">
+            <h2 class="fw-bold text-success mb-3">Quiénes Somos</h2>
+            <p class="fs-5">El Real Racing Club, fundado en 1913, es una institución histórica del fútbol español y un símbolo de Cantabria. Nuestro compromiso va más allá del campo: representamos los valores de esfuerzo, humildad, tradición y orgullo verdiblanco.</p>
+            <p class="fs-5">Con una afición inigualable y una identidad marcada, seguimos construyendo nuestro legado temporada tras temporada.</p>
         </div>
     </div>
-</div>
+</section>
 
+<!-- VALORES -->
+<section class="bg-success text-white py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-4">Nuestros Valores</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="value-card shadow-lg p-4 rounded">
+                    <h3 class="fw-bold mb-2">Pasión</h3>
+                    <p>Vivimos cada partido como si fuera el último. El Sardinero late con fuerza.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="value-card shadow-lg p-4 rounded">
+                    <h3 class="fw-bold mb-2">Compromiso</h3>
+                    <p>Defendemos nuestros colores en cada jugada, sin importar el rival.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="value-card shadow-lg p-4 rounded">
+                    <h3 class="fw-bold mb-2">Identidad</h3>
+                    <p>Más de un siglo de historia construyendo el orgullo de Cantabria.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EQUIPO DIRECTIVO -->
+<section class="container my-5">
+    <h2 class="fw-bold text-success text-center mb-4">Equipo Directivo</h2>
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card shadow team-card">
+                <img src="data:image/jpeg;base64,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" class="card-img-top" alt="">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Presidente</h5>
+                    <p>Responsable de liderar el crecimiento del club.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow team-card">
+                <img src="https://statics-maker.llt-services.com/rac/images/2025/06/19/xxlarge-wp/9a6a9ab6-fdc9-43c5-ae93-6ad303b2192c-488.webp" class="card-img-top" alt="">
+                <div class="card-body text-center">
+                  <br>
+                  <br>
+                    <h5 class="fw-bold">Director Deportivo</h5>
+                    <p>Encargado de la estrategia deportiva y fichajes. </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow team-card">
+                <img src="https://s2.abcstatics.com/lavozdigital/www/multimedia/canal-amarillo/2024/10/20/jose-alberto-R02gunKclvSyZsjIYQrpZJK-1200x840@abc.jpeg" class="card-img-top" alt="">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">Entrenador</h5>
+                    <p>Guía del equipo y creador del estilo de juego.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="bg-dark text-white text-center py-3 mt-auto">
-    <p class="m-0">© 2025 Real Racing Club de Santander</p>
+    <p class="m-0">© 2025 Real Racing Club de Santander — Todos los derechos reservados</p>
 </footer>
-
 
 </body>
 </html>
