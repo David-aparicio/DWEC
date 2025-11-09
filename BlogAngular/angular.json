@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "BlogAngularD": {
+    "BlogAngular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "BlogAngularD:build:production"
+              "buildTarget": "BlogAngular:build:production"
             },
             "development": {
-              "buildTarget": "BlogAngularD:build:development"
+              "buildTarget": "BlogAngular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,5 +88,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "5045b402-a1cd-4201-ace3-79e2c3a7203a"
   }
 }

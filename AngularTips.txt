@@ -1,2 +1,0 @@
-Crear componente -->   ng g c components/nombre del componente 
-

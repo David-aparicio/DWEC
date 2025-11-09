@@ -16,17 +16,17 @@ public class Contacto {
     private String email;
     private String mensaje;
 
-    // Constructor vacío (obligatorio para JPA)
+
     public Contacto() {}
 
-    // Constructor útil para crear instancias
+
     public Contacto(String nombre, String email, String mensaje) {
         this.nombre = nombre;
         this.email = email;
         this.mensaje = mensaje;
     }
 
-    // Getters y setters
+
     public Long getId() { return id; }
 
     public String getNombre() { return nombre; }
