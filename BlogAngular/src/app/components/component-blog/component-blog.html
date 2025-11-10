@@ -1,0 +1,13 @@
+<section>
+    <ul>
+        @for (noticia of noticias; track noticia.titulo; let i = $index) {
+            
+                <span>{{i}}</span>
+                <span><strong>Titulo: </strong>{{noticia.titulo}}</span>
+                <span><strong>Imagen: </strong>{{noticia.imagen}}</span>
+                <span><strong>Cuerpo: </strong>{{noticia.cuerpo}}</span>
+                <span><strong>Fecha: </strong>{{noticia.Fecha}}</span>
+                
+            }
+    </ul>
+</section>
