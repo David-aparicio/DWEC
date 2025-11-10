@@ -1,13 +1,16 @@
-<section>
-    <ul>
-        @for (noticia of noticias; track noticia.titulo; let i = $index) {
-            
-                <span>{{i}}</span>
-                <span><strong>Titulo: </strong>{{noticia.titulo}}</span>
-                <span><strong>Imagen: </strong>{{noticia.imagen}}</span>
-                <span><strong>Cuerpo: </strong>{{noticia.cuerpo}}</span>
-                <span><strong>Fecha: </strong>{{noticia.Fecha}}</span>
-                
-            }
-    </ul>
+<section class="container">
+
+        @for (noticia of noticias; track noticia.titulo) {
+
+        <div class="card" style="width: 18rem;">
+            <img [src]="noticia.imagen" class="card-img-top" >
+            <div class="card-body">
+                <h5 class="card-title">{{noticia.titulo}}</h5>
+                <p class="card-text">{{noticia.cuerpo}}</p>
+                <p class="card-text"><small class="text-body-secondary">{{ noticia.Fecha | date:'dd/MM/yyyy'}}</small></p>
+            </div>
+        </div>
+
+        }
+
 </section>

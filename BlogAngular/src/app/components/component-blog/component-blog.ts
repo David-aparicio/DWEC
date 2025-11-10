@@ -1,9 +1,10 @@
+import { DatePipe } from '@angular/common';
 import { InterfaceNoticias } from './../../interfaces/interface-noticias';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-component-blog',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './component-blog.html',
   styleUrl: './component-blog.css',
 })
@@ -27,7 +28,25 @@ export class ComponentBlog {
     }
   ]
   }
+
+  nuevaNoticia: InterfaceNoticias = {
+    titulo: '',
+    imagen: '',
+    cuerpo: '',
+    Fecha: new Date(),
+  };
+
   agregarNoticia() : void{
-    this.noticias.push({titulo: '', imagen:'', cuerpo: '', Fecha:new Date()})
+    if(this.nuevaNoticia.titulo === '' || this.nuevaNoticia.imagen === '' || this.nuevaNoticia.cuerpo === '' || this.nuevaNoticia.Fecha === new Date('') ){
+      alert('Campos sin rellenar')
+    } else {
+      this.noticias.push(this.nuevaNoticia);
+      this.nuevaNoticia = {
+        titulo: '',
+        imagen: '',
+        cuerpo: '',
+        Fecha: new Date(),
+      }
+    }
   }
 }
