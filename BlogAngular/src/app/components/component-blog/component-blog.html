@@ -1,5 +1,28 @@
 <section class="container">
+    <div class="row"><!--separo el div en dos columnas cada una con un col distinto-->
+        <div class="col-6"> <!--Formulario-->
+            <h1>Nueva Noticia</h1>
+            <div>
+                <label class="form-label">Titulo</label>
+                <input type="text" class="form-control" id="titulo" placeholder="Titulo" [(ngModel)] = "nuevaNoticia.titulo" name="titulo">
+            </div>
+            
+            <div>
+                <label class="form-label">Imagen</label>
+                <input type="url" class="form-control" id="imagen"  placeholder="Pega la direccion de imagen" [(ngModel)] = "nuevaNoticia.imagen" name="imagen">
+            </div>
+            <div>
+                <label class="form-label">Cuerpo</label>
+                <input type="text" class="form-control" id="cuerpo" placeholder="Cuerpo" [(ngModel)] = "nuevaNoticia.cuerpo" name="cuerpo">
+            </div>
+            <div>
+                <label for="">Fecha</label>
+                <input type="date" [(ngModel)] = "nuevaNoticia.Fecha">
+            </div>
 
+            <button class="btn" (click)="agregarNoticia()">Agregar Noticias</button>
+        </div>
+        <div class="col-6">
         @for (noticia of noticias; track noticia.titulo) {
 
         <div class="card" style="width: 18rem;">
@@ -12,5 +35,6 @@
         </div>
 
         }
-
+        </div>
+    </div>
 </section>

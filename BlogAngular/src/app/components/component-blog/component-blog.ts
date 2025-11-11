@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { InterfaceNoticias } from './../../interfaces/interface-noticias';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-component-blog',
-  imports: [DatePipe],
+  imports: [DatePipe,FormsModule],
   templateUrl: './component-blog.html',
   styleUrl: './component-blog.css',
 })
