@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-black py-3 shadow-sm starwars-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand text-warning fw-bold fs-4" href="#">
+      <i class="fa-solid fa-jedi"></i> StarNews
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link text-light active" aria-current="page" href="#">Inicio</a>
+        <a class="nav-link text-light" href="#">Noticias</a>
+        <a class="nav-link text-light" href="#">Personajes</a>
+        <a class="nav-link text-light" href="#">Planetas</a>
+      </div>
+
+      <!-- Toggle a la derecha -->
+      <label class="bb8-toggle ms-auto">
+        <input class="bb8-toggle__checkbox" type="checkbox" (change)="onbtnChange()">
+        <div class="bb8-toggle__container">
+          <div class="bb8-toggle__scenery">
+            <div class="bb8-toggle__star"></div>
+            <div class="bb8-toggle__star"></div>
+            <div class="bb8-toggle__star"></div>
+            <div class="bb8-toggle__star"></div>
+            <div class="bb8-toggle__star"></div>
+            <div class="bb8-toggle__star"></div>
+            <div class="bb8-toggle__star"></div>
+            <div class="tatto-1"></div>
+            <div class="tatto-2"></div>
+            <div class="gomrassen"></div>
+            <div class="hermes"></div>
+            <div class="chenini"></div>
+            <div class="bb8-toggle__cloud"></div>
+            <div class="bb8-toggle__cloud"></div>
+            <div class="bb8-toggle__cloud"></div>
+          </div>
+          <div class="bb8">
+            <div class="bb8__head-container">
+              <div class="bb8__antenna"></div>
+              <div class="bb8__antenna"></div>
+              <div class="bb8__head"></div>
+            </div>
+            <div class="bb8__body"></div>
+          </div>
+          <div class="artificial__hidden">
+            <div class="bb8__shadow"></div>
+          </div>
+        </div>
+      </label>
+    </div>
+  </div>
+</nav>

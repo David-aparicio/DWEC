@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+/* Modo claro */
+:root {
+  --bg-color: #fdf6ff;   /* fondo violeta claro */
+  --text-color: #9b00ff; /* texto púrpura */
+  --card-bg: #b3d9ff;    /* card azul suave */
+  --btn-bg: #9b00ff;     /* botón púrpura */
+  --btn-text: #ffffff;    /* texto botón */
+}
+
+/* Modo oscuro */
+body.dark-mode {
+  --bg-color: #0b0b0b;
+  --text-color: #f5f5f5;
+  --card-bg: #121212;
+  --btn-bg: #ffc107;
+  --btn-text: #000000;
+}
+
+/* Aplicar variables */
+body, .container, .row {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 10px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.btn, .btn-primary, .btn-warning {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.navbar, .nav-link {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
