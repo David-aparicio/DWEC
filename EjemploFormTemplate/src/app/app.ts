@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ComponentBlog } from "./components/component-blog/component-blog";
+import { FormTemplate } from "./component/form-template/form-template";
 
 @Component({
   selector: 'app-root',
-  imports: [ ComponentBlog],
+  imports: [FormTemplate],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('BlogAngular');
+  protected readonly title = signal('EjemploFormTemplate');
 }

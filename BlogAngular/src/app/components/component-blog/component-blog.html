@@ -23,18 +23,21 @@
             <button class="btn" (click)="agregarNoticia()">Agregar Noticias</button>
         </div>
         <div class="col-6">
-        @for (noticia of noticias; track noticia.titulo) {
+            <div class="row row-cols-2 ">
+            @for (noticia of noticias; track noticia.titulo) {
 
-        <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;">
             <img [src]="noticia.imagen" class="card-img-top" >
             <div class="card-body">
                 <h5 class="card-title">{{noticia.titulo}}</h5>
                 <p class="card-text">{{noticia.cuerpo}}</p>
                 <p class="card-text"><small class="text-body-secondary">{{ noticia.Fecha | date:'dd/MM/yyyy'}}</small></p>
+                <button class="btn btn-danger" (click)="eliminarNoticia(noticia.id)">Eliminar Noticia</button>
             </div>
         </div>
 
         }
         </div>
+    </div>
     </div>
 </section>
