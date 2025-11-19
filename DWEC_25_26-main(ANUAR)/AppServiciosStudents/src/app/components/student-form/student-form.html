@@ -1,0 +1,32 @@
+<section class="container mt-3">
+    <h4>Formulario de registro de estudiantes</h4>
+    <hr>
+    <form [formGroup]="registerStudent" (ngSubmit)="getDataForm()" class="card shadow p-3">
+        <div class="my-3">
+            <label for= "nombre" class="for-label">Nombre</label>
+            <input type="text" id="nombre" formControlName="nombre" class="form-control" placeholder="Ingrese el nombre">
+        </div>
+
+        <div class="my-3">
+            <label for= "Edad" class="for-label">Edad</label>
+            <input type="number" id="Edad" formControlName="edad" class="form-control" placeholder="Ingrese el Edad">
+        </div>
+
+        <div class="my-3">
+            <label for= "email" class="for-label">Email</label>
+            <input type="email" id="email" formControlName="email" class="form-control" placeholder="Ingrese el email">
+        </div>
+
+        <div class="my-3">
+            <label for= "curso" class="for-label">Curso</label>
+            
+            <select name="curso" id="curso" class="form-select" formControlName="curso">
+                @for (curso of studentServices.getAllCourses(); track $index) {
+                    <option [value]="curso.valor">{{curso.titulo}}</option>
+                }
+            </select>
+        </div>
+
+        <input type="submit" value="Enviar" class="btn btn-primary mt-3" [disabled]="!registerStudent.valid">
+    </form>
+</section>
