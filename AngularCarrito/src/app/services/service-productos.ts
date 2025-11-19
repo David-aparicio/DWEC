@@ -14,18 +14,19 @@ export class ServiceProductos {
     this.currency = '';
 
     fetch('http://localhost:8080/api/carrito')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Error al cargar el JSON');
-      }
-      return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-          this.arrProductos.push(data.products);
-          this.currency = data.currency;
-  })
-    .catch(error => console.error(error));
-}
+      this.currency = data.currency;
+      data.products.forEach((item: any) => {
+        let producto: ProductoInterface = {
+          SKU: item.SKU,
+          title: item.title,
+          price: item.price,
+        };
+        this.arrProductos.push(producto);
+      });
+    });
+  }
 
   getProductos(): ProductoInterface[] {
     return this.arrProductos;
