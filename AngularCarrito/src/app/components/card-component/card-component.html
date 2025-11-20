@@ -3,9 +3,9 @@
         <div class="card-body">
             <h4 class="card-title">{{producto.title}}</h4>
             <h1 class="card-text">{{producto.SKU}}</h1>
-            <button>-</button>
-            <input type="number">
-            <button>+</button>
+            <button (click)="restarCantidad()">-</button>
+            <input type="number" [(ngModel)]="productoCarrito.cantidad" min="0"/>
+            <button (click)="sumarCantidad()">+</button>
         </div>
     </div>
 </section>

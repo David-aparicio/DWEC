@@ -1,6 +1,8 @@
+import { ProductoInterface } from "./producto-interface";
+
 export interface IlineaCompra {
-    SKU: string;
-    title: string;
-    price: string;
-    cantidad?: number;
+    sku : string;
+    title : string;
+    price : number;
+    cantidad: number;
 }
