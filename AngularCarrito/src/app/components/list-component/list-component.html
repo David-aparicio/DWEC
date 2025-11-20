@@ -1,0 +1,5 @@
+<section>
+    @for(producto of arrProductos; track producto.SKU){
+        <app-card-component [producto]="producto"></app-card-component>
+    }
+</section>

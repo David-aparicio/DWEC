@@ -17,12 +17,8 @@ export class ServiceProductos {
     .then(response => response.json())
     .then(data => {
       this.currency = data.currency;
-      data.products.forEach((item: any) => {
-        let producto: ProductoInterface = {
-          SKU: item.SKU,
-          title: item.title,
-          price: item.price,
-        };
+      data.products.forEach((producto: ProductoInterface) => {
+        
         this.arrProductos.push(producto);
       });
     });
