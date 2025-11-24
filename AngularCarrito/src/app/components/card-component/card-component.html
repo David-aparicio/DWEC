@@ -2,9 +2,9 @@
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h4 class="card-title">{{producto.title}}</h4>
-            <h1 class="card-text">{{producto.SKU}}</h1>
-            <button (click)="restarCantidad()">-</button>
-            <input type="number" [(ngModel)]="productoCarrito.cantidad" min="0"/>
+            <h1 class="card-text">{{producto.sku}}</h1>
+            <button [disabled]="cantidad === 0" (click)="restarCantidad()">-</button> <!--si la cantidad es 0 el boton se desabilita asi evito cantidades negativas-->
+            <input type="number" [(ngModel)]="cantidad" min="0"/>
             <button (click)="sumarCantidad()">+</button>
         </div>
     </div>

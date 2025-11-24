@@ -14,20 +14,19 @@ export class GestionServices {
   }
 
       agregarProducto(producto: IlineaCompra): void {
-    // Buscar si el producto ya existe en el carrito
-    const indice = this.itemsCarrito.findIndex(
+    const indice = this.itemsCarrito.findIndex(  // Buscar si el producto ya existe en el carrito
       item => item.sku === producto.sku
     );
-
-    // Si ya existe, aumentar la cantidad
-    if (indice !== -1) {
-      this.itemsCarrito[indice].cantidad += 1;
-    } else {
+        if (indice !== -1) {
+      this.itemsCarrito[indice].cantidad += 1; // Si ya existe, aumentar la cantidad
+        } else {
       // Si no existe, agregarlo con cantidad 1
       this.itemsCarrito.push(producto);
     }
   }
 
-
+      getItems(): IlineaCompra[] {
+          return this.itemsCarrito;
+      }
   
 }

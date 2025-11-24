@@ -4,10 +4,11 @@ import { ServiceProductos } from '../../services/service-productos';
 import { ProductoInterface } from '../../interfaces/producto-interface';
 
 import { IlineaCompra } from '../../interfaces/ilinea-compra';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-card-component',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './card-component.html',
   styleUrl: './card-component.css',
 })
@@ -19,7 +20,6 @@ export class CardComponent {
   moneda!: string;
   cantidad: number ;
 
-  productoCarrito! : IlineaCompra;
   
   @Input() producto!: ProductoInterface;
   
@@ -29,20 +29,22 @@ export class CardComponent {
   }
   
     sumarCantidad() {
-      this.cantidad += 1;
-      this.productoCarrito.cantidad = this.cantidad;
-      this.productoCarrito.price = Number(this.producto.price);
+  // Aquí conviertes de ProductoInterface → IlineaCompra
+  const productoCarrito: IlineaCompra = {
+    sku: this.producto.sku,
+    title: this.producto.title,
+    price: parseFloat(this.producto.price), 
+    cantidad: 1
+  };
+  
+  this.sCarrito.agregarProducto(productoCarrito);
+}
 
-      this.sCarrito.agregarProducto(this.productoCarrito);
-      
-    }
-
-    restarCantidad() {
-    
-    }
+    restarCantidad(){}
 
   ngOnInit() {
     this.moneda = this.sProductos.getCurrency();
+    
   }
 
 }

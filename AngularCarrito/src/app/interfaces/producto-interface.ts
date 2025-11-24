@@ -1,5 +1,5 @@
 export interface ProductoInterface {
-    SKU: string;
+    sku: string;
     title: string;
     price: string;
 }

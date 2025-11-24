@@ -19,7 +19,7 @@ export class ListComponent {
   Sproductos = inject(ServiceProductos);
 
   constructor() {
-    this.producto = {SKU: '', title: '', price: ''};
+    this.producto = {sku: '', title: '', price: ''};
     this.arrProductos = [ ];
   }
 
