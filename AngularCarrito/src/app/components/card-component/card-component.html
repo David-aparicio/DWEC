@@ -1,11 +1,19 @@
-<section>
-    <div class="card" style="width: 18rem;">
+<section class="container mt-4">
+    <div class="card" style="width: 60rem;">
         <div class="card-body">
-            <h4 class="card-title">{{producto.title}}</h4>
-            <h1 class="card-text">{{producto.sku}}</h1>
-            <button [disabled]="cantidad === 0" (click)="restarCantidad()">-</button> <!--si la cantidad es 0 el boton se desabilita asi evito cantidades negativas-->
-            <input type="number" [(ngModel)]="cantidad" min="0"/>
-            <button (click)="sumarCantidad()">+</button>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h4 class="card-title">{{producto.title}}</h4>
+                    <p class="card-text">SKU: {{producto.sku}}</p>
+                    <p class="card-text">Precio: {{producto.price}}{{moneda}} </p>
+                </div>
+                <h4 class="card-text ">Total: {{calcularTotal().toFixed(2)}}{{moneda}}</h4>
+            </div>
+            <div class="cantidad-control">
+                <button [disabled]="cantidadEnCarrito === 0" (click)="restarCantidad()">-</button>
+                <input type="number" [value]="cantidadEnCarrito" readonly min="0" />
+                <button (click)="sumarCantidad()">+</button>
+            </div>
         </div>
     </div>
 </section>

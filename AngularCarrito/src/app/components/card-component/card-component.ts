@@ -1,5 +1,5 @@
 import { GestionServices } from './../../services/gestion-services';
-import { Component, inject, Input} from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ServiceProductos } from '../../services/service-productos';
 import { ProductoInterface } from '../../interfaces/producto-interface';
 
@@ -18,33 +18,37 @@ export class CardComponent {
   sProductos = inject(ServiceProductos);
   sCarrito = inject(GestionServices);
   moneda!: string;
-  cantidad: number ;
 
-  
+
   @Input() producto!: ProductoInterface;
-  
 
-  constructor() {
-    this.cantidad = 0;
+
+  get cantidadEnCarrito(): number {
+    return this.sCarrito.obtenerCantidad(this.producto.sku);
   }
-  
-    sumarCantidad() {
-  // Aquí conviertes de ProductoInterface → IlineaCompra
-  const productoCarrito: IlineaCompra = {
-    sku: this.producto.sku,
-    title: this.producto.title,
-    price: parseFloat(this.producto.price), 
-    cantidad: 1
-  };
-  
-  this.sCarrito.agregarProducto(productoCarrito);
-}
 
-    restarCantidad(){}
+  sumarCantidad() {
+    const productoCarrito: IlineaCompra = {
+      sku: this.producto.sku,
+      title: this.producto.title,
+      price: parseFloat(this.producto.price),
+      cantidad: 1
+    };
 
+    this.sCarrito.agregarProducto(productoCarrito);
+  }
+
+  restarCantidad() {
+    this.sCarrito.quitarProducto(this.producto.sku);
+  }
+
+  calcularTotal(): number {
+    const precio = parseFloat(this.producto.price);
+    return precio * this.cantidadEnCarrito;
+  }
   ngOnInit() {
     this.moneda = this.sProductos.getCurrency();
-    
+
   }
 
 }
