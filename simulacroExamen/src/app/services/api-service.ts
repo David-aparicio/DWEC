@@ -23,5 +23,4 @@ export class ApiService {
   getProductos(): ApiInterface[]{
     return this.arrProductos;
   }
-
 }

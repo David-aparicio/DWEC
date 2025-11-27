@@ -1,1 +1,5 @@
-<p>list-card works!</p>
+<section>
+    @for (productos of arrProductos; track productos.id) {
+        <app-card-component [producto]="productos"></app-card-component>
+    }
+</section>
