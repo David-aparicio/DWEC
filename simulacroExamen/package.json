@@ -29,6 +29,8 @@
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
     "bootstrap": "^5.3.8",
+    "node-modules": "^1.0.1",
+    "npm": "^11.6.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
