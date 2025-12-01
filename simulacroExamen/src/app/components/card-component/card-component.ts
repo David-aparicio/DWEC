@@ -16,9 +16,7 @@ export class CardComponent {
 
   @Input() producto!: ApiInterface;
 
-  get isAdmin(): boolean{
-    return this.authService.isAdmin();
-  }
+
 
   deleteSerie(producto: ApiInterface) {
         this.sProductos.deleteById(producto.id);

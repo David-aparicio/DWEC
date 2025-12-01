@@ -13,7 +13,7 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/productos']">Ver Productos</a>
                 </li>
-                @if(isAdmin){
+                @if(authService.isAdmin()){
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/formulario']
                     ">Nuevo producto</a>

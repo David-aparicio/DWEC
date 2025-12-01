@@ -22,9 +22,7 @@ cambiarRol(): void{
   this.authService.setRol(this.selectedRole as 'User' | 'Admin');
 }
 
-get isAdmin(): boolean {
-  return this.authService.isAdmin();
-}
+
 
 
 }

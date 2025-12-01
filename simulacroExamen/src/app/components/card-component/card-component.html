@@ -15,7 +15,7 @@
 
         <div class="card-footer border-0">
             <button [routerLink]="['/productos', producto.id]" class="btn btn-primary w-100 mb-2">Ver más</button>
-            @if(isAdmin) {
+            @if(authService.isAdmin()) {
             <button class="btn btn-danger w-100" (click)="deleteSerie(producto)">Eliminar</button>
             }
         </div>

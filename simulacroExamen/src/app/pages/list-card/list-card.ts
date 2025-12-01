@@ -16,7 +16,8 @@ export class ListCard {
   authService = inject(AuthService);
   Sproductos = inject (ApiService);
 
-  filtroCategoria: string = "";  // Variable que guarda la categoría seleccionada para filtrar
+  productosFiltrados: ApiInterface[] = []; 
+  filtroCategoria: string = "";
 
   constructor() {
     this.arrProductos = [];
@@ -26,12 +27,18 @@ export class ListCard {
     return this.authService.isAdmin();
   }
 
-   get productosFiltrados(): ApiInterface[] { // Getter que devuelve los productos filtrados según la categoría
-    if (!this.filtroCategoria) return this.arrProductos;// Si no hay filtro seleccionado, devuelvo todos los productos
-    return this.arrProductos.filter(p => p.category === this.filtroCategoria); // Si hay filtro, devuelvo solo los que coinciden en category
+   actualizarFiltro(): void {
+    // Si no hay filtro seleccionado, mostramos todos los productos
+    if (!this.filtroCategoria) {
+      this.productosFiltrados = this.arrProductos;
+    } else {
+      // Si hay filtro, mostramos solo los que coinciden en category
+      this.productosFiltrados = this.arrProductos.filter(p => p.category === this.filtroCategoria);
+    }
   }
 
   ngOnInit(): void{
     this.arrProductos = this.Sproductos.getProductos();
+    this.productosFiltrados = this.arrProductos;
   }
 }
