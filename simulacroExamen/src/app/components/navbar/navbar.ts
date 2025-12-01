@@ -19,7 +19,7 @@ export class Navbar {
 
 
 cambiarRol(): void{
-  this.authService.setRol(this.selectedRole as 'User' | 'Admin');
+  this.authService.setRole(this.selectedRole as 'User' | 'Admin');
 }
 
 

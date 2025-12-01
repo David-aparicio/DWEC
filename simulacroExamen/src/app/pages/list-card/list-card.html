@@ -1,13 +1,7 @@
 <div class="container mt-5">
 
   <!-- FILTROS -->
-  <div class="mt-5 mb-4 d-flex gap-2">
-    <button class="btn btn-outline-primary" (click)="filtroCategoria = ''; actualizarFiltro()">Todos</button>
-    <button class="btn btn-outline-primary" (click)="filtroCategoria = 'hombre'; actualizarFiltro()">Hombre</button>
-    <button class="btn btn-outline-primary" (click)="filtroCategoria = 'mujer'; actualizarFiltro()">Mujer</button>
-    <button class="btn btn-outline-primary" (click)="filtroCategoria = 'niño'; actualizarFiltro()">Niño</button>
-  </div>
-
+  <app-filter (filtroSeleccionado)="cambiarFiltro($event)"></app-filter>
   <!-- LISTADO FILTRADO -->
 @if(authService.isAdmin()){
     <div class="row mt-4 mb-5">

@@ -3,10 +3,11 @@ import { ApiInterface } from '../../interfaces/api-interface';
 import { ApiService } from '../../services/api-service';
 import { CardComponent } from "../../components/card-component/card-component";
 import { AuthService } from '../../services/auth-service';
+import { Filter } from "../../components/filter/filter";
 
 @Component({
   selector: 'app-list-card',
-  imports: [CardComponent],
+  imports: [CardComponent, Filter],
   templateUrl: './list-card.html',
   styleUrl: './list-card.css',
 })
@@ -23,11 +24,12 @@ export class ListCard {
     this.arrProductos = [];
   }
   
-  get isAdmin(): boolean{
-    return this.authService.isAdmin();
+    cambiarFiltro(filtro: string) {
+    this.filtroCategoria = filtro;
+    this.actualizarFiltro();
   }
 
-   actualizarFiltro(): void {
+  actualizarFiltro(): void {
     // Si no hay filtro seleccionado, mostramos todos los productos
     if (!this.filtroCategoria) {
       this.productosFiltrados = this.arrProductos;

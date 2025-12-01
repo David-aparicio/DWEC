@@ -51,7 +51,7 @@
             [routerLink]="['/productos']">
             Volver
           </button>
-@if(isAdmin){
+@if(authService.isAdmin()){
           <!-- Botón para editar el producto -->
           <button 
             class="btn btn-warning"

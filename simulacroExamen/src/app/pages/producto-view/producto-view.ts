@@ -17,9 +17,7 @@ export class ProductoView {
   activatedRoute = inject(ActivatedRoute);
   authService = inject(AuthService);
 
-  get isAdmin(): boolean {
-    return this.authService.isAdmin();
-  }
+
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
