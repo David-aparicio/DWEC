@@ -1,5 +1,38 @@
-<section>
-    @for (productos of arrProductos; track productos.id) {
-        <app-card-component [producto]="productos"></app-card-component>
+<div class="container mt-5">
+
+  <!-- FILTROS -->
+  <div class="mt-5 mb-4 d-flex gap-2">
+    <button class="btn btn-outline-primary" (click)="filtroCategoria = ''">Todos</button>
+    <button class="btn btn-outline-primary" (click)="filtroCategoria = 'hombre'">Hombre</button>
+    <button class="btn btn-outline-primary" (click)="filtroCategoria = 'mujer'">Mujer</button>
+    <button class="btn btn-outline-primary" (click)="filtroCategoria = 'niño'">Niño</button>
+  </div>
+
+  <!-- LISTADO FILTRADO -->
+@if(isAdmin){
+    <div class="row mt-4 mb-5">
+    @for (producto of productosFiltrados; track producto.id) { <!--LE PASO EL PRODUCTO FILTRADOS -->>
+
+        <article class="col-12 col-sm-6 col-md-4 mb-3">
+          <app-card-component [producto]="producto"></app-card-component>
+        </article>
+      }
+    
+  </div>
+}@else{
+  <div class="row mt-4 mb-5">
+    @for (producto of productosFiltrados; track producto.id) {
+      @if (producto.active) {
+        <article class="col-12 col-sm-6 col-md-4 mb-3">
+          <app-card-component [producto]="producto"></app-card-component>
+        </article>
+      }
+    } @empty {
+      <h3>No hay productos disponibles</h3>
     }
-</section>
+  </div>
+}
+
+  
+
+</div>

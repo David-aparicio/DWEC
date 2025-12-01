@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark ">
     <div class="container-fluid">
         <a class="navbar-brand" [routerLink]="['/']">NikeDaw</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -11,19 +11,22 @@
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/home']">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/series']">Series</a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/productos']">Ver Productos</a>
                 </li>
+                @if(isAdmin){
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/formulario']
                     ">Nuevo producto</a>
                 </li>
-                <li class="nav-item">
-                    <button class="dropdown-toggle-split">
-                    <span class="">A</span>
-                    <span class="">B</span>
-                    <span class="">C</span>
-                    </button>
+                }
+                <li class="nav-item d-flex align-items-center">
+                    <select class="form-select ms-3" style="width: auto;" aria-label="Selecciona una opción" name="Rol"
+                        [(ngModel)]="selectedRole" (change)="cambiarRol()">
+                        <option value="User" selected>Usuario</option>
+                        <option value="Admin">Administrador</option>
+                    </select>
                 </li>
+
             </ul>
         </div>
     </div>

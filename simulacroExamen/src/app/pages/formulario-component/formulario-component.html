@@ -1,1 +1,144 @@
-<p>formulario-component works!</p>
+<section class="container mt-3 mb-5">
+    <!-- Mostramos un título diferente según si estamos creando o editando -->
+    @if(isNew){
+    <h1>Insertar nuevo producto</h1>
+    }
+    @else{
+    <h1>Editar producto</h1>
+    }
+
+    <hr>
+
+    <!-- 
+        Formulario reactivo:
+        - [formGroup] vincula el formulario HTML con el FormGroup del componente
+        - (ngSubmit) ejecuta getDataForm() cuando se hace submit
+    -->
+    <form [formGroup]="productoForm" class="card p-3 shadow bg-secondary" (ngSubmit)="getDataForm()">
+        
+        <!-- Campo Nombre -->
+        <div class="my-2">
+            <label for="name" class="form-label mt-lg-3">Nombre</label>
+            <!-- formControlName vincula este input con el FormControl 'name' -->
+            <input type="text" class="form-control" name="name" id="name" placeholder="Introduce el nombre"
+                formControlName="name">
+            
+            <!-- Mostramos error si el campo es obligatorio y está vacío -->
+            @if(checkControl('name', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+            <!-- Mostramos error si no cumple el mínimo de 3 caracteres -->
+            @if(checkControl('name', 'minlength')){
+                <p class="error">Mínimo 3 caracteres</p>
+            }
+        </div>
+
+        <!-- Campo Descripción -->
+        <div class="my-2">
+            <label for="description" class="form-label mt-lg-3">Descripción</label>
+            <!-- Usamos textarea en lugar de input para permitir texto largo -->
+            <textarea class="form-control" name="description" id="description" placeholder="Introduce descripción"
+                formControlName="description" rows="3"></textarea>
+            
+            @if(checkControl('description', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+            <!-- Mostramos error si excede los 280 caracteres -->
+            @if(checkControl('description', 'maxlength')){
+                <p class="error">Máximo 280 caracteres</p>
+            }
+        </div>
+
+        <!-- Campo Precio -->
+        <div class="my-2">
+            <label for="price" class="form-label mt-lg-3">Precio</label>
+            <!-- 
+                type="number" permite solo números
+                step="0.01" permite decimales (para precios como 19.99)
+            -->
+            <input type="number" class="form-control" name="price" id="price" placeholder="Introduzca el precio"
+                formControlName="price" step="0.01">
+            
+            @if(checkControl('price', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+            <!-- Mostramos error si el precio es menor que 0 -->
+            @if(checkControl('price', 'min')){
+                <p class="error">El precio debe ser mayor o igual a 0</p>
+            }
+            <!-- Mostramos error si el precio es mayor que 1000 -->
+            @if(checkControl('price', 'max')){
+                <p class="error">El precio debe ser menor o igual a 1000</p>
+            }
+        </div>
+
+        <!-- Campo Categoría -->
+        <div class="my-2">
+            <label for="category" class="form-label mt-lg-3">Categoría</label>
+            <select name="category" id="category" class="form-control" formControlName="category">
+                <!-- Opción por defecto deshabilitada que aparece cuando no hay nada seleccionado -->
+                <option value="" disabled selected>Selecciona una categoría</option>
+                
+                <!-- 
+                    @for es el nuevo control flow de Angular (standalone)
+                    Itera sobre el array 'categorias' y crea una opción por cada elemento
+                    track categoria es necesario para optimizar el rendering
+                -->
+                @for(categoria of categorias; track categoria){
+                    <!-- [value] vincula el valor de la opción con la variable -->
+                    <option [value]="categoria">{{ categoria }}</option>
+                }
+            </select>
+            
+            @if(checkControl('category', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+        </div>
+
+        <!-- Campo Imagen -->
+        <div class="my-2">
+            <label for="image" class="form-label mt-lg-3">Imagen</label>
+            <!-- Input de texto para la URL de la imagen -->
+            <input type="text" class="form-control" name="image" id="image" placeholder="Introduce el link de la imagen"
+                formControlName="image">
+            
+            @if(checkControl('image', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+        </div>
+
+        <!-- Campo Active (Activo/Inactivo) -->
+        <div class="my-2">
+            <label for="active" class="form-label mt-lg-3">Activo</label>
+            <select name="active" id="active" class="form-control" formControlName="active">
+                <!-- 
+                    [value]="true" vincula valores booleanos (no strings)
+                    true = producto activo, false = producto inactivo
+                -->
+                <option [value]="true">Sí</option>
+                <option [value]="false">No</option>
+            </select>
+            
+            @if(checkControl('active', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="d-flex ms-auto gap-2">
+            <!-- 
+                Botón Guardar:
+                - type="submit" hace que active el (ngSubmit) del form
+                - [disabled] desactiva el botón si el formulario no es válido
+            -->
+            <input type="submit" value="Guardar" class="btn btn-success mt-5" [disabled]="productoForm.invalid">
+            
+            <!-- 
+                Botón Volver:
+                - type="button" evita que haga submit del formulario
+                - [routerLink] navega a la ruta de productos
+            -->
+            <button type="button" class="btn btn-warning mt-5" [routerLink]="['/productos']">Volver</button>
+        </div>
+    </form>
+</section>
