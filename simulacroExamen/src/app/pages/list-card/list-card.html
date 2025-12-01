@@ -13,7 +13,7 @@
     <div class="row mt-4 mb-5">
       @for (producto of productosFiltrados; track producto.id) {
         <article class="col-12 col-sm-6 col-md-4 mb-3">
-          <app-card-component [producto]="producto"></app-card-component>
+          <app-card-component [producto]="producto" (deleted)="onDeleted($event)"></app-card-component>
         </article>
       }
     </div>
@@ -22,7 +22,7 @@
       @for (producto of productosFiltrados; track producto.id) {
         @if (producto.active) {
           <article class="col-12 col-sm-6 col-md-4 mb-3">
-            <app-card-component [producto]="producto"></app-card-component>
+            <app-card-component [producto]="producto" (deleted)="onDeleted($event)"></app-card-component>
           </article>
         }
       } @empty {

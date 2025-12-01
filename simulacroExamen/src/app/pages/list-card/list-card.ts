@@ -37,6 +37,13 @@ export class ListCard {
     }
   }
 
+  onDeleted(id: number) {
+  // Actualizar el array original
+  this.arrProductos = this.Sproductos.getProductos();
+
+  // Volver a aplicar el filtro
+  this.actualizarFiltro();
+}
   ngOnInit(): void{
     this.arrProductos = this.Sproductos.getProductos();
     this.productosFiltrados = this.arrProductos;

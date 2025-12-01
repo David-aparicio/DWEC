@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ApiService } from '../../services/api-service';
 import { ApiInterface } from '../../interfaces/api-interface';
 import { RouterLink } from "@angular/router";
@@ -15,11 +15,12 @@ export class CardComponent {
   authService = inject(AuthService);
 
   @Input() producto!: ApiInterface;
-
+  @Output() deleted = new EventEmitter<number>();   // ← Evento al padre
 
 
   deleteSerie(producto: ApiInterface) {
         this.sProductos.deleteById(producto.id);
+        this.deleted.emit(this.producto.id);            // ← Avisar al padre
     }
   
 }
