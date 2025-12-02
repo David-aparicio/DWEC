@@ -1,0 +1,23 @@
+<div class="container my-4">
+    <div class="card shadow-sm h-100">
+        <img class="card-img-top img-fluid" [src]="producto.image" [alt]="producto.name"
+            style="object-fit: cover; height: 220px;" />
+
+        <div class="card-body">
+            <h5 class="card-title fw-bold" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{ producto.name }}</h5>
+
+
+
+            <p class="card-text fs-5 fw-semibold text-primary">{{ producto.price}} €</p>
+
+            <span class="badge bg-dark text-white">{{ producto.category }}</span>
+        </div>
+
+        <div class="card-footer border-0">
+            <button [routerLink]="['/productos', producto.id]" class="btn btn-primary w-100 mb-2">Ver más</button>
+            @if(authService.isAdmin()) {
+            <button class="btn btn-danger w-100" (click)="deleteProducto(producto)">Eliminar</button>
+            }
+        </div>
+    </div>
+</div>

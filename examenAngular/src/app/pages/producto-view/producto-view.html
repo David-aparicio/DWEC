@@ -1,0 +1,67 @@
+
+<section class="container mt-5 pt-4">
+  <div class="card shadow-sm border-0 p-3">
+
+    <div class="row g-3 align-items-center">
+
+
+      <div class="col-md-4 text-center">
+        <img 
+          [src]="Iproducto.image" 
+          [alt]="Iproducto.name" 
+          class="img-fluid rounded"
+        >
+      </div>
+
+
+      <div class="col-md-8">
+
+
+        <h3 class="fw-bold">{{ Iproducto.name }}</h3>
+
+        <span class="badge bg-primary mb-2">
+          {{ Iproducto.category }}
+        </span>
+
+
+        <p class="text-muted">
+          {{ Iproducto.description }}
+        </p>
+
+
+        <h4 class="text-success fw-semibold">
+          {{ Iproducto.price }} €
+        </h4>
+
+        <div class="mb-3">
+          @if(Iproducto.active) {
+            <span class="badge bg-success">Activo</span>
+          } @else {
+            <span class="badge bg-secondary">Inactivo</span>
+          }
+        </div>
+
+       
+        <div class="mt-3 d-flex gap-2">
+
+          <button 
+            class="btn btn-outline-secondary"
+            [routerLink]="['/productos']">
+            Volver
+          </button>
+@if(authService.isAdmin()){
+
+          <button 
+            class="btn btn-warning"
+            [routerLink]="['/formulario', Iproducto.id]">
+            Editar
+          </button>
+          }
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

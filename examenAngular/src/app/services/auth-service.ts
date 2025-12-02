@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+      roles: string[];
+
+  currentRole: string;
+
+  constructor(){
+    this.roles  = ["user", "admin"];
+    this.currentRole = "user";  
+  }
+
+  setRole(role: string) {
+    this.currentRole = role;
+  }
+
+  getRole(): string {
+    return this.currentRole;
+  }
+
+  getAllRoles(): string[] {
+    return this.roles;
+  }
+  isAdmin(): boolean {
+  return this.currentRole === 'admin';
+}
+
+
+}

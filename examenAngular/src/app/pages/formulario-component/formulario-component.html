@@ -1,0 +1,106 @@
+<section class="container mt-3 mb-5">
+    <!-- Mostramos un título diferente según si estamos creando o editando -->
+    @if(isNew){
+    <h1 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Insertar nuevo producto</h1>
+    }
+    @else{
+    <h1 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Editar producto</h1>
+    }
+
+    <hr>
+    <form [formGroup]="productoForm" class="card p-3 shadow bg-info" (ngSubmit)="getDataForm()">
+        
+        <div class="my-2">
+            <label for="name" class="form-label mt-lg-3" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" >Nombre</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Introduce el nombre"
+                formControlName="name">
+            @if(checkControl('name', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+            @if(checkControl('name', 'minlength')){
+                <p class="error">Mínimo 3 caracteres</p>
+            }
+        </div>
+
+        <div class="my-2">
+            <label for="description" class="form-label mt-lg-3" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Descripción</label>
+            <textarea class="form-control" name="description" id="description" placeholder="Introduce descripción"
+                formControlName="description" rows="3"></textarea>
+            
+            @if(checkControl('description', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+            @if(checkControl('description', 'maxlength')){
+                <p class="error">Máximo 280 caracteres</p>
+            }
+        </div>
+
+        <div class="my-2">
+            <label for="price" class="form-label mt-lg-3" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" >Precio</label>
+
+            <input type="number" class="form-control" name="price" id="price" placeholder="Introduzca el precio"
+                formControlName="price" step="0.01">
+            
+            @if(checkControl('price', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+
+            @if(checkControl('price', 'min')){
+                <p class="error">El precio debe ser mayor o igual a 0</p>
+            }
+
+            @if(checkControl('price', 'max')){
+                <p class="error">El precio debe ser menor o igual a 1000</p>
+            }
+        </div>
+
+        <div class="my-2">
+            <label for="category" class="form-label mt-lg-3" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" >Categoría</label>
+            <select name="category" id="category" class="form-control" formControlName="category">
+
+                <option value="" disabled selected>Selecciona una categoría</option>
+                
+
+                @for(categoria of categorias; track categoria){
+                    <option [value]="categoria">{{ categoria }}</option>
+                }
+            </select>
+            
+            @if(checkControl('category', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+        </div>
+
+
+        <div class="my-2">
+            <label for="image" class="form-label mt-lg-3" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Imagen</label>
+
+            <input type="text" class="form-control" name="image" id="image" placeholder="Introduce el link de la imagen"
+                formControlName="image">
+            
+            @if(checkControl('image', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+        </div>
+
+
+        <div class="my-2">
+            <label for="active" class="form-label mt-lg-3">Activo</label>
+            <select name="active" id="active" class="form-control" formControlName="active">
+                <option [value]="true">Si</option> 
+                <option [value]="false">No</option>
+            </select>
+            
+            @if(checkControl('active', 'required')){
+                <p class="error">Campo requerido</p>
+            }
+        </div>
+
+
+        <div class="d-flex ms-auto gap-2">
+
+            <input type="submit" value="Guardar" class="btn btn-success mt-5" [disabled]="productoForm.invalid">
+            <button type="button" class="btn btn-warning mt-5" [routerLink]="['/productos']">Volver</button>
+        </div>
+    </form>
+</section>
