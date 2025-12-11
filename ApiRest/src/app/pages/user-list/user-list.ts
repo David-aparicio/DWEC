@@ -17,6 +17,15 @@ export class UserList {
     this.arrUSuarios = [];
   }
 
+  async eliminarUsuario(_id: string): Promise<void> {
+    try{
+      await this.Susuaruis.eliminarUsuarioID(_id);
+      this.arrUSuarios = this.arrUSuarios.filter(usuario => usuario._id !== _id);
+    }catch(error){
+      console.error('Error al eliminar el usuario:', error);
+    }
+  }
+
   async ngOnInit(): Promise<void> {
     try{
       this.arrUSuarios = await this.Susuaruis.getAllUsers();

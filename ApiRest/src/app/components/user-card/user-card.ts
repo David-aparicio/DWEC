@@ -9,6 +9,17 @@ import { Iusuario } from '../../interfaces/iusuario';
   styleUrl: './user-card.css',
 })
 export class UserCard {
+
   sUsuarios = inject(UsuarioService);
   @Input() usuario!: Iusuario;
+
+    // deleteUsuario(usuario: string): void {
+    //  // this.sUsuarios.eliminarUsuarioID(usuario._id)
+    //     .then(() => {
+    //       console.log(`Usuario con ID ${id} eliminado correctamente.`);
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error al eliminar el usuario:', error);
+    //     });
+    // }
 }

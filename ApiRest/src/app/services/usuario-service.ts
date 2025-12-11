@@ -24,6 +24,11 @@ export class UsuarioService {
       const resp = await lastValueFrom(this.httpClient.get<Iapi>(this.baseURL)); // Realiza la petición HTTP GET y espera la respuesta tipada como Iapi
       return resp.results; // Devuelve el array de usuarios que se llama results
     }
+
+
+    async eliminarUsuarioID(id: string): Promise<void> { // Método asíncrono que recibe un id de usuario y devuelve una promesa vacía
+      await lastValueFrom(this.httpClient.delete<void>(`${this.baseURL}/${id}`)); // Realiza la petición HTTP DELETE para eliminar el usuario por su id
+    }
   }
 
 
