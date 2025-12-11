@@ -1,0 +1,7 @@
+<div class="row">
+    @for(usuario of arrUSuarios; track usuario.first_name){
+        <div class="col-md-4">
+            <app-user-card [usuario]="usuario"></app-user-card>
+        </div>
+    }
+</div>
