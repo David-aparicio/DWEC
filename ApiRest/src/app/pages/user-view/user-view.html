@@ -1,1 +1,18 @@
-<p>user-view works!</p>
+<section class="container mt-5 pt-4">
+    <div class="card shadow-sm border-0 p-3">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img [src]="usuario.image" [alt]="" class="img-fluid rounded-start" >
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ usuario.first_name }} {{ usuario.last_name }}</h5>
+                    <p class="card-text">
+                        <strong>Email: </strong> 
+                        <a [href]="'mailto:' + usuario.email">{{ usuario.email }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Iusuario } from '../../interfaces/iusuario';
 import { UsuarioService } from '../../services/usuario-service';
 import { UserCard } from "../../components/user-card/user-card";
+import { Iapi } from '../../interfaces/iapi';
 
 @Component({
   selector: 'app-user-list',
@@ -17,14 +18,7 @@ export class UserList {
     this.arrUSuarios = [];
   }
 
-  async eliminarUsuario(_id: string): Promise<void> {
-    try{
-      await this.Susuaruis.eliminarUsuarioID(_id);
-      this.arrUSuarios = this.arrUSuarios.filter(usuario => usuario._id !== _id);
-    }catch(error){
-      console.error('Error al eliminar el usuario:', error);
-    }
-  }
+ 
 
   async ngOnInit(): Promise<void> {
     try{

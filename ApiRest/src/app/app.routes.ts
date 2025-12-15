@@ -11,7 +11,7 @@ export const routes: Routes = [
     { path: 'formulario', component: UserForm},
     {path: 'formulario/:id', component: UserForm},
     {path: 'usuarios', component: UserList},
-    { path: 'usuarios/:id', component: UserView},
+    { path: 'usuarios/:_id', component: UserView},
     
     { path: '**', component: Page404 },
     
