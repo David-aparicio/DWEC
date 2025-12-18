@@ -1,7 +1,8 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { UsuarioService } from '../../services/usuario-service';
 import { Iusuario } from '../../interfaces/iusuario';
 import { RouterLink } from "@angular/router";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-card',
@@ -13,14 +14,25 @@ export class UserCard {
 
   sUsuarios = inject(UsuarioService);
   @Input() usuario!: Iusuario;
+  @Output() usuarioEliminado = new EventEmitter<string>()
 
-    async eliminarUsuario(usuario: Iusuario){
+    async eliminarUsuario(usuario: Iusuario) {
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      imageUrl: `${usuario.image}`,
+      imageWidth: `250`,
+      imageHeight: `250`,
+      text: `Se eliminará a ${usuario.first_name} ${usuario.last_name}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#2b85daff',
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar'
+    });
 
-      const response = await this.sUsuarios.eliminarUsuarioID(usuario._id);
-      if(response){
-        alert(`Usuario ${usuario.first_name} eliminado correctamente.`);
-      }else{
-        alert(`Error al eliminar el usuario ${usuario.first_name}.`);
-      }
+    if (result.isConfirmed) {
+      this.usuarioEliminado.emit(usuario._id);
+    }
   }
 }
