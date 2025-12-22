@@ -35,4 +35,5 @@ export class UserCard {
       this.usuarioEliminado.emit(usuario._id);
     }
   }
+  
 }

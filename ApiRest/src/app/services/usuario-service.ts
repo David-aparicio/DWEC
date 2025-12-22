@@ -25,13 +25,31 @@ export class UsuarioService {
     }
 
 
-    async eliminarUsuarioID(_id: string): Promise<Iusuario> { // Método asíncrono que recibe un id de usuario 
-      return lastValueFrom(this.httpClient.delete<Iusuario>(`${this.baseURL}/${_id}`)); // Realiza la petición HTTP DELETE para eliminar el usuario por su id
+    async eliminarUsuarioID(_id: string): Promise<Iusuario> {  
+      return lastValueFrom(this.httpClient.delete<Iusuario>(`${this.baseURL}/${_id}`)); 
     }
 
 
     async getByID(_id: String): Promise<Iusuario>{ 
       return lastValueFrom(this.httpClient.get<Iusuario>(this.baseURL + '/' + _id)); 
+    }
+
+    async update(usuario: Iusuario): Promise<Iusuario> {
+      return lastValueFrom(
+        this.httpClient.put<Iusuario>(`${this.baseURL}/${usuario._id}`, usuario)
+      );
+    }
+
+        async create(usuario: Iusuario): Promise<Iusuario> {
+      return lastValueFrom(
+        this.httpClient.post<Iusuario>(this.baseURL, usuario)
+      );
+    }
+
+        async delete(_id: string): Promise<Iusuario> {
+      return lastValueFrom(
+        this.httpClient.delete<Iusuario>(`${this.baseURL}/${_id}`)
+      );
     }
   }
 
