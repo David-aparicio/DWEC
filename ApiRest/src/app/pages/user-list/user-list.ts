@@ -105,8 +105,5 @@ export class UserList {
     }
   }
 
-
-  calcularHasta(): number {
-  return Math.min(this.paginaActual * this.usuariosPorPagina, this.totalUsuarios);
-}
+  
 }

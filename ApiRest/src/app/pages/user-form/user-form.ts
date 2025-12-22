@@ -20,7 +20,6 @@ export class UserFormComponent {
   router = inject(Router);
   isNew: boolean;
 
-  // Expresión regular para validar formato de email
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   constructor() {
@@ -31,42 +30,27 @@ export class UserFormComponent {
 
   private createForm(): FormGroup {
     return new FormGroup({
-      // Campo _id: MongoDB ID, no tiene validaciones, se genera automáticamente
       _id: new FormControl(null),
-
-      // Campo id: ID numérico, no tiene validaciones
       id: new FormControl(null),
-
-      // Campo Nombre: obligatorio y mínimo 3 caracteres
       first_name: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
       ]),
-
-      // Campo Apellido: obligatorio y mínimo 3 caracteres
       last_name: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
       ]),
-
-      // Campo Username: obligatorio y mínimo 3 caracteres
       username: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
       ]),
-
-      // Campo Email: obligatorio y debe cumplir patrón de email
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(this.emailRegex)
       ]),
-
-      // Campo Imagen: obligatorio, debe ser una URL de imagen válida
       image: new FormControl('', [
         Validators.required
       ]),
-
-      // Campo Password: obligatorio y mínimo 6 caracteres
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(6)
@@ -75,13 +59,11 @@ export class UserFormComponent {
   }
 
   getDataForm() {
-    // Validación del formulario
     if (this.userForm.invalid) return;
 
     let usuario = this.userForm.value as Iusuario;
 
     if (this.isNew) {
-      // Modo Crear: asignamos id temporal
       usuario.id = -1;
 
       this.usuarioService.create(usuario).then(response => {
@@ -93,7 +75,7 @@ export class UserFormComponent {
         alert('Error al crear el usuario');
       });
     } else {
-      // Modo Editar: actualizamos el usuario existente
+
       this.usuarioService.update(usuario).then(response => {
         alert('Usuario actualizado exitosamente');
         this.userForm.reset();
@@ -106,27 +88,16 @@ export class UserFormComponent {
   }
 
   ngOnInit(): void {
-    // Nos suscribimos a los cambios en los parámetros de la ruta
     this.activatedRoute.params.subscribe((params: any) => {
-      // Extraemos el parámetro '_id' de la URL
       let _id: string = params._id;
-      
-      // Si existe un _id en la URL (no es undefined)
       if (_id != undefined) {
-        // Buscamos el usuario por su _id en el servicio
         this.usuarioService.getByID(_id).then(usuario => {
-          // Si encontramos el usuario
           if (usuario != undefined) {
-            // Cambiamos el flag a false porque estamos editando
             this.isNew = false;
-            
-            // Rellenamos el formulario con los datos del usuario existente
             this.userForm.patchValue(usuario);
           } else {
-            // Si no encontramos el usuario, mostramos un alert
-            alert("No se encuentra el usuario en nuestro servicio");
+            alert("No se encuentra el usuario");
             
-            // Y redirigimos a la lista de usuarios
             this.router.navigate(['/usuarios']);
           }
         }).catch(error => {
@@ -144,7 +115,7 @@ export class UserFormComponent {
   }
 
   onCancel(): void {
-    if (confirm('¿Estás seguro de que deseas cancelar? Los cambios no guardados se perderán.')) {
+    if (confirm('Estás seguro de que deseas cancelar?')) {
       this.router.navigate(['/usuarios']);
     }
   }
@@ -154,7 +125,7 @@ export class UserFormComponent {
       if (this.isNew) {
         this.userForm.reset();
       } else {
-        const _id = this.activatedRoute.snapshot.params['_id']; // CORREGIDO: usar '_id'
+        const _id = this.activatedRoute.snapshot.params['_id']; 
         if (_id) {
           this.usuarioService.getByID(_id).then(usuario => {
             if (usuario) {

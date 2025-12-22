@@ -1,25 +1,19 @@
 <section class="container mt-5 mb-5">
-    <!-- Mostramos un título diferente según si estamos creando o editando -->
     @if(isNew){
-        <h1 class="display-4  text-black text-center mb-4">
-            <i class="bi bi-person-plus-fill"></i> Insertar Nuevo Usuario
+        <h1 class="display-4  text-black text-center mb-4"> Insertar Nuevo Empleado
         </h1>
     }
     @else{
-        <h1 class="display-4 text-black text-center mb-4">
-            <i class="bi bi-pencil-square"></i> Editar Usuario
-        </h1>
+        <h1 class="display-4 text-black text-center mb-4"> Editar Empleado</h1>
     }
     <div class="row justify-content-center">
         <div class="col-lg-8 col-xl-7">
             <form [formGroup]="userForm" class="card shadow-lg  p-3 mb-5" (ngSubmit)="getDataForm()">
-                
-                <!-- Campo Nombre -->
+
                 <div class="my-3">
-                    <label for="first_name" class="form-label fw-bold">
+                    <label for="first_name" class="form-label ">
                         <i class="bi bi-person-fill text-primary me-2"></i>Nombre 
                     </label>
-                    <!-- formControlName vincula este input con el FormControl 'first_name' -->
                     <input 
                         type="text" 
                         class="form-control form-control-lg" 
@@ -28,23 +22,19 @@
                         placeholder="Introduce el nombre"
                         formControlName="first_name">
                     
-                    <!-- Mostramos error si el campo es obligatorio y está vacío -->
                     @if(checkControl('first_name', 'required')){
                         <p class="text-danger mt-2 mb-0">
                             <i class="bi bi-exclamation-circle-fill me-1"></i>Campo requerido
                         </p>
                     }
-                    <!-- Mostramos error si no cumple el mínimo de 3 caracteres -->
                     @if(checkControl('first_name', 'minlength')){
                         <p class="text-danger mt-2 mb-0">
                             <i class="bi bi-exclamation-circle-fill me-1"></i>Mínimo 3 caracteres
                         </p>
                     }
                 </div>
-
-                <!-- Campo Apellido -->
                 <div class="my-3">
-                    <label for="last_name" class="form-label fw-bold">
+                    <label for="last_name" class="form-label ">
                         <i class="bi bi-person-fill text-primary me-2"></i>Apellido 
                     </label>
                     <input 
@@ -66,19 +56,11 @@
                         </p>
                     }
                 </div>
-
-                <!-- Campo Username -->
                 <div class="my-3">
-                    <label for="username" class="form-label fw-bold">
+                    <label for="username" class="form-label ">
                         <i class="bi bi-at text-primary me-2"></i>Nombre de Usuario 
                     </label>
-                    <input 
-                        type="text" 
-                        class="form-control form-control-lg" 
-                        name="username" 
-                        id="username" 
-                        placeholder="Introduce el nombre de usuario"
-                        formControlName="username">
+                    <input type="text" class="form-control form-control-lg" name="username" id="username" placeholder="Introduce el nombre de usuario" formControlName="username">
                     
                     @if(checkControl('username', 'required')){
                         <p class="text-danger mt-2 mb-0">
@@ -91,10 +73,8 @@
                         </p>
                     }
                 </div>
-
-                <!-- Campo Email -->
                 <div class="my-3">
-                    <label for="email" class="form-label fw-bold">
+                    <label for="email" class="form-label ">
                         <i class="bi bi-envelope-fill text-primary me-2"></i>Email
                     </label>
                     <input 
@@ -116,10 +96,8 @@
                         </p>
                     }
                 </div>
-
-                <!-- Campo Password -->
                 <div class="my-3">
-                    <label for="password" class="form-label fw-bold">
+                    <label for="password" class="form-label">
                         <i class="bi bi-lock-fill text-primary me-2"></i>Contraseña 
                     </label>
                     <input 
@@ -141,10 +119,8 @@
                         </p>
                     }
                 </div>
-
-                <!-- Campo Imagen URL -->
                 <div class="my-3">
-                    <label for="image" class="form-label fw-bold">
+                    <label for="image" class="form-label">
                         <i class="bi bi-image-fill text-primary me-2"></i>URL de Imagen 
                     </label>
                     <input 
@@ -165,21 +141,15 @@
                     <!-- Preview de imagen -->
                     @if(userForm.get('image')?.valid && userForm.get('image')?.value){
                         <div class="mt-3 text-center">
-                            <img 
-                                [src]="userForm.get('image')?.value" 
-                                alt="Preview" 
-                                class="" 
-                                style="max-width: 200px; max-height: 200px;">
+                            <img [src]="userForm.get('image')?.value" alt="Preview" class="" style="max-width: 200px; max-height: 200px;">
                         </div>
                     }
                 </div>
-
-                <!-- Botones de acción -->
                 <div class="d-flex justify-content-center gap-3 mt-5 pt-4 border-top flex-wrap">
                     
                     <button 
                         type="submit" 
-                        class="btn btn-primary btn-lg px-5 rounded-pill" 
+                        class="btn btn-primary btn-lg  rounded-pill" 
                         [disabled]="userForm.invalid">
                         @if(isNew){
                             Crear Usuario
@@ -188,18 +158,10 @@
                             Guardar Cambios
                         }
                     </button>
-                    
-
-                    <button 
-                        type="button" 
-                        class="btn btn-warning btn-lg px-5 rounded-pill"
-                        (click)="onReset()">
+                    <button type="button" class="btn btn-warning btn-lg  rounded-pill" (click)="onReset()">
                         Resetear
                     </button>
-                    <button 
-                        type="button" 
-                        class="btn btn-secondary btn-lg px-5 rounded-pill" 
-                        [routerLink]="['/usuarios']">
+                    <button type="button" class="btn btn-secondary btn-lg  rounded-pill" [routerLink]="['/usuarios']">
                         Cancelar
                     </button>
                 </div>
