@@ -1,1 +1,45 @@
-<p>dashboard works!</p>
+<!-- dashboard.component.html -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar vh-100">
+      <div class="position-sticky pt-3">
+        <div class="text-white text-center mb-4">
+          <h5>Bienvenido, {{ username }}</h5>
+          <span class="badge bg-primary">{{ userRole }}</span>
+        </div>
+        
+        <ul class="nav flex-column">
+          <!-- Productos - Todos pueden ver -->
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/dashboard/productos" routerLinkActive="active">
+              <i class="bi bi-box-seam"></i> Productos
+            </a>
+          </li>
+          
+          <!-- Empleados - Solo Admin -->
+           @if (isAdmin()) {
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/dashboard/empleados" routerLinkActive="active">
+              <i class="bi bi-people"></i> Empleados
+            </a>
+          </li>
+          }
+          
+          <hr class="bg-white">
+          
+          <li class="nav-item">
+            <button class="nav-link text-white btn btn-link" (click)="logout()">
+              <i class="bi bi-box-arrow-left"></i> Cerrar Sesión
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

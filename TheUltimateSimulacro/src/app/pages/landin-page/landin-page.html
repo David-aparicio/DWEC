@@ -1,1 +1,130 @@
-<p>landin-page works!</p>
+<body>
+    <header class="bg-primary text-white py-5">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">BusinessHub</h1>
+            <p class="lead">La plataforma integral para impulsar tu negocio al siguiente nivel</p>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">BusinessHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    @if(isToken){
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light" [routerLink]="['/dashboard']">
+                            <i class="bi bi-speedometer2"></i> Panel de Control
+                        </a>
+                    </li>
+                    }@else{
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light" [routerLink]="['/login']">
+                            <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 hover-card">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-box-seam display-1 text-primary"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Control Total de Inventario</h5>
+                        <p class="card-text text-muted">
+                            Mantén un seguimiento preciso de tu inventario en tiempo real. 
+                            Optimiza existencias y evita roturas de stock.
+                        </p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Explorar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 hover-card">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-people display-1 text-success"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Equipos de Alto Rendimiento</h5>
+                        <p class="card-text text-muted">
+                            Organiza equipos de trabajo, evalúa desempeño y potencia 
+                            la productividad de tu talento humano.
+                        </p>
+                        <a href="#" class="btn btn-outline-success btn-sm">Explorar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 hover-card">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-shield-lock display-1 text-danger"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Seguridad y Permisos</h5>
+                        <p class="card-text text-muted">
+                            Controla quién accede a qué. Define roles personalizados y 
+                            protege la información crítica de tu empresa.
+                        </p>
+                        <a href="#" class="btn btn-outline-danger btn-sm">Explorar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 hover-card">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <i class="bi bi-graph-up-arrow display-1 text-info"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Análisis y Reportes</h5>
+                        <p class="card-text text-muted">
+                            Toma decisiones inteligentes basadas en datos. Genera reportes 
+                            detallados y visualiza el crecimiento de tu negocio.
+                        </p>
+                        <a href="#" class="btn btn-outline-info btn-sm">Explorar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección CTA -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card bg-primary text-white text-center p-5 border-0">
+                    <h2 class="fw-bold mb-3">¿Listo para transformar tu negocio?</h2>
+                    <p class="lead mb-4">Únete a más de 5,000 empresas que confían en BusinessHub</p>
+                    <div>
+                        <a [routerLink]="['/login']" class="btn btn-light btn-lg me-2">
+                            Comenzar Ahora
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">© 2026 BusinessHub</p>
+            <div class="mt-2">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>

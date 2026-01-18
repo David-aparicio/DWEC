@@ -18,15 +18,13 @@ export class UsuarioService {
 
 
     async getAllUsers(page: number = 1): Promise<Iapi> {  
-      
-      const resp = await lastValueFrom(this.httpClient.get<Iapi>(`${this.baseURL}?page= ${page}`)); 
-      // Realiza la petición HTTP GET y espera la respuesta tipada como Iapi
-      return resp;// Ahora devolvemos todo el objeto Iapi, no solo results
+      const resp = await lastValueFrom(this.httpClient.get<Iapi>(this.baseURL + '?page=' + page)); 
+      return resp;
     }
 
 
     async eliminarUsuarioID(_id: string): Promise<Iusuario> {  
-      return lastValueFrom(this.httpClient.delete<Iusuario>(`${this.baseURL}/${_id}`)); 
+      return lastValueFrom(this.httpClient.delete<Iusuario>(this.baseURL + '/' + _id)); 
     }
 
 
@@ -36,26 +34,22 @@ export class UsuarioService {
 
     async update(usuario: Iusuario): Promise<Iusuario> {
       return lastValueFrom(
-        this.httpClient.put<Iusuario>(`${this.baseURL}/${usuario._id}`, usuario)
+        this.httpClient.put<Iusuario>(this.baseURL + '/' + usuario._id, usuario)
       );
     }
 
-        async create(usuario: Iusuario): Promise<Iusuario> {
+    async create(usuario: Iusuario): Promise<Iusuario> {
       return lastValueFrom(
         this.httpClient.post<Iusuario>(this.baseURL, usuario)
       );
     }
 
-        async delete(_id: string): Promise<Iusuario> {
+    async delete(_id: string): Promise<Iusuario> {
       return lastValueFrom(
-        this.httpClient.delete<Iusuario>(`${this.baseURL}/${_id}`)
+        this.httpClient.delete<Iusuario>(this.baseURL + '/' + _id)
       );
     }
-  }
-
-
-
-
+}
 
 
 

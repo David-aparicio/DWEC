@@ -3,6 +3,7 @@ import { UsuarioService } from '../../services/usuario-service';
 import { Iusuario } from '../../interfaces/iusuario';
 import { RouterLink } from "@angular/router";
 import Swal from 'sweetalert2';
+import { Authservice } from '../../services/authservice';
 
 @Component({
   selector: 'app-user-card',
@@ -11,10 +12,13 @@ import Swal from 'sweetalert2';
   styleUrl: './user-card.css',
 })
 export class UserCard {
+  auth = inject(Authservice)//CON ESTO LO HAGO DIRECTAMENTE EN EL HTML
 
-  sUsuarios = inject(UsuarioService);
   @Input() usuario!: Iusuario;
   @Output() usuarioEliminado = new EventEmitter<string>()
+
+ 
+
 
     async eliminarUsuario(usuario: Iusuario) {
     const result = await Swal.fire({
@@ -30,6 +34,7 @@ export class UserCard {
       confirmButtonText: 'Si, eliminar',
       cancelButtonText: 'Cancelar'
     });
+    
 
     if (result.isConfirmed) {
       this.usuarioEliminado.emit(usuario._id);
