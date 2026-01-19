@@ -1,0 +1,17 @@
+<div class="container my-4">
+    <div class="card shadow-sm h-100">
+        <div class="card-body">
+            <img [src]="heroe.image1" class="card-img-top mb-3 rounded-circle mx-auto d-block" style="width: 150px; height: 150px; object-fit: cover;">
+            <h5 class="card-title">{{heroe.heroName}} {{heroe.fullName}}</h5>
+            <p class="card-text">
+                        <strong>Gender: </strong> 
+                        <a>{{ heroe.gender}}</a>
+                        <strong>Race: </strong>
+                        <a >{{heroe.race}}</a>
+                        <strong>Aligment</strong>
+                        <a >{{heroe.alignment}}</a>
+                    </p>
+            
+        </div>
+    </div>
+</div>

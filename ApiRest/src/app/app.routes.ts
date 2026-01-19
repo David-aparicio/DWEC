@@ -32,6 +32,7 @@ export const routes: Routes = [
             { path: 'usuarios/:_id', component: UserView},
         ]
     },
+    //{ path: 'perfil/:id', component: UserView, canActivate: [authguardGuard] }
 
     { path: '**', component: Page404 },
 ];

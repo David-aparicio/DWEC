@@ -1,0 +1,10 @@
+<div class="hero-list-container">
+ 
+    <div class="row m-5">
+        @for(heroe of arrHeroes; track heroe.id){
+        <div class="col-md-4 mb-4">
+           <app-hero-card [heroe]="heroe"></app-hero-card>
+        </div>
+        }
+    </div>
+</div>

@@ -32,6 +32,8 @@ export class Login {
             localStorage.setItem("access_token", response.accessToken);
             localStorage.setItem("refresh_token", response.refreshToken);
             localStorage.setItem("username", loginUser.username);
+            localStorage.setItem('user_id', response.id);
+
              // ← GUARDA EL ROL DEL USUARIO
             // DummyJSON devuelve información del usuario en response
             if (response.role) {

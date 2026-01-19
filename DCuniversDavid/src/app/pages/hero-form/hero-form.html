@@ -1,0 +1,134 @@
+<div class="form-container">
+  <div class="form-header">
+    <h1>{{ editMode ? 'Editar Personaje' : 'Crear Nuevo Personaje' }}</h1>
+  </div>
+
+  <!-- Indicador de carga -->
+  <div *ngIf="loading" class="loading">
+    <p>Procesando...</p>
+  </div>
+
+  <!-- Formulario -->
+  <form *ngIf="!loading" (ngSubmit)="saveHero()" class="hero-form">
+    <div class="form-group">
+      <label for="heroName">Nombre del Héroe *</label>
+      <input
+        type="text"
+        id="heroName"
+        [(ngModel)]="hero.heroName"
+        name="heroName"
+        placeholder="Ej: Superman"
+        class="form-input"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fullName">Nombre Completo *</label>
+      <input
+        type="text"
+        id="fullName"
+        [(ngModel)]="hero.fullName"
+        name="fullName"
+        placeholder="Ej: Clark Kent"
+        class="form-input"
+        required
+      />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="gender">Género *</label>
+        <select
+          id="gender"
+          [(ngModel)]="hero.gender"
+          name="gender"
+          class="form-input"
+          required
+        >
+          <option value="">Selecciona género</option>
+          <option value="Male">Masculino</option>
+          <option value="Female">Femenino</option>
+          <option value="Other">Otro</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="alignment">Alineación *</label>
+        <select
+          id="alignment"
+          [(ngModel)]="hero.alignment"
+          name="alignment"
+          class="form-input"
+          required
+        >
+          <option value="">Selecciona alineación</option>
+          <option value="Good">Bueno</option>
+          <option value="Bad">Malo</option>
+          <option value="Neutral">Neutral</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="race">Raza *</label>
+      <input
+        type="text"
+        id="race"
+        [(ngModel)]="hero.race"
+        name="race"
+        placeholder="Ej: Kryptonian"
+        class="form-input"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="image1">Primera Imagen (URL)</label>
+      <input
+        type="url"
+        id="image1"
+        [(ngModel)]="hero.image1"
+        name="image1"
+        placeholder="https://ejemplo.com/imagen1.jpg"
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="image2">Segunda Imagen (URL)</label>
+      <input
+        type="url"
+        id="image2"
+        [(ngModel)]="hero.image2"
+        name="image2"
+        placeholder="https://ejemplo.com/imagen2.jpg"
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="image3">Tercera Imagen (URL)</label>
+      <input
+        type="url"
+        id="image3"
+        [(ngModel)]="hero.image3"
+        name="image3"
+        placeholder="https://ejemplo.com/imagen3.jpg"
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{ editMode ? 'Actualizar' : 'Crear' }}
+      </button>
+      <button type="button" (click)="clearForm()" class="btn btn-secondary">
+        Limpiar
+      </button>
+      <button type="button" (click)="cancel()" class="btn btn-outline">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

@@ -15,9 +15,15 @@ SUsuarioService = inject(UsuarioService);
 activatedRoute = inject(ActivatedRoute);
   constructor(){}
 
+
+
   ngOnInit(): void{
     this.activatedRoute.params.subscribe(async (params : any) =>{
       let _id: string = params._id;
+      //Si quiero acceder al del login
+      const id = this.activatedRoute.snapshot.paramMap.get('id');
+      this.SUsuarioService.getByID(id);
+
 
       if(_id != undefined) {
           let response = await this.SUsuarioService.getByID(_id);
