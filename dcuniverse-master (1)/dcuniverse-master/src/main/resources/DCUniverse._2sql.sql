@@ -22,8 +22,8 @@ USE `dcuniverse` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dcuniverse`.`characters` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `heroName` VARCHAR(50) NOT NULL,
-  `fullName` VARCHAR(100) NULL DEFAULT NULL,
+  `heroname` VARCHAR(50) NOT NULL,
+  `fullname` VARCHAR(100) NULL DEFAULT NULL,
   `image1` TEXT NULL DEFAULT NULL,
   `image2` TEXT NULL DEFAULT NULL,
   `image3` TEXT NULL DEFAULT NULL,
