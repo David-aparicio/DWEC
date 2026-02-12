@@ -1,0 +1,146 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4">{{ isNew ? 'Crear Héroe' : 'Editar Héroe' }}</h2>
+
+            <form [formGroup]="heroForm" (ngSubmit)="getDataForm()">
+
+                <!-- Sección: Información Básica -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Información Básica</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="heroname" class="form-label">Nombre del Héroe</label>
+                                <input id="heroname" type="text" class="form-control" formControlName="heroname"
+                                    placeholder="Ej: Aquaman">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="fullname" class="form-label">Nombre Completo</label>
+                                <input id="fullname" type="text" class="form-control" formControlName="fullname"
+                                    placeholder="Ej: Arthur Curry">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="image1" class="form-label">Image1</label>
+                                <input id="image1" type="text" class="form-control" formControlName="image1"
+                                    placeholder="URL">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="image2" class="form-label">Imagen2</label>
+                                <input id="image2" type="text" class="form-control" formControlName="image2"
+                                    placeholder="URL">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="image3" class="form-label">Imagen3</label>
+                                <input id="image3" type="text" class="form-control" formControlName="image3"
+                                    placeholder="URL">
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="race" class="form-label">Raza</label>
+                                <input id="race" type="text" class="form-control" formControlName="race"
+                                    placeholder="Ej: Atlantean">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Características -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Características</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="gender" class="form-label">Género</label>
+                                    <select class="form-select" id="gender" formControlName="gender" required>
+                                        <option value="">Seleccione...</option>
+                                        <option value="Male">Masculino</option>
+                                        <option value="Female">Femenino</option>
+                                        <option value="Other">Otro</option>
+                                    </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="alignment" class="form-label">Alineación</label>
+                                <select id="alignment" class="form-select" formControlName="alignment">
+                                    <option value="">Seleccione...</option>
+                                    <option value="good">Bueno</option>
+                                    <option value="bad">Malo</option>
+                                    <option value="neutral">Neutro</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Estadísticas de Poder -->
+                <div class="card mb-4" formGroupName="powerstats">
+                    <div class="card-header">
+                        <h5 class="mb-0">Estadísticas de Poder</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="intelligence" class="form-label">Intelligence</label>
+                                <input id="intelligence" type="number" class="form-control"
+                                    formControlName="intelligence" min="0" max="100">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="strength" class="form-label">Strength</label>
+                                <input id="strength" type="number" class="form-control" formControlName="strength"
+                                    min="0" max="100">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="speed" class="form-label">Speed</label>
+                                <input id="speed" type="number" class="form-control" formControlName="speed" min="0"
+                                    max="100">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="durability" class="form-label">Durability</label>
+                                <input id="durability" type="number" class="form-control" formControlName="durability"
+                                    min="0" max="100">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="power" class="form-label">Power</label>
+                                <input id="power" type="number" class="form-control" formControlName="power" min="0"
+                                    max="100">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="combat" class="form-label">Combat</label>
+                                <input id="combat" type="number" class="form-control" formControlName="combat" min="0"
+                                    max="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="button" routerLink="/home" class="btn btn-secondary">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-warning " (click)="onReset()">
+                        Resetear
+                    </button>
+                    <button type="submit" [disabled]="heroForm.invalid" class="btn btn-primary">
+                        {{ isNew ? 'Crear Héroe' : 'Actualizar Héroe' }}
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

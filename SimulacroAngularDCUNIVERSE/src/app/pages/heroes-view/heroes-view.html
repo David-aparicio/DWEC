@@ -1,0 +1,239 @@
+<!-- heroes-view.html -->
+<div class="container mt-4" *ngIf="hero">
+  
+  <!-- Header con acciones -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>{{ hero.heroname }}</h2>
+        
+        <div class="btn-group">
+          <button class="btn btn-secondary" (click)="goBack()">
+            <i class="bi bi-arrow-left"></i> Volver
+          </button>
+          <button class="btn btn-warning" (click)="editHero()">
+            <i class="bi bi-pencil"></i> Editar
+          </button>
+          <button class="btn btn-danger" (click)="deleteHero()">
+            <i class="bi bi-trash"></i> Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    
+    <!-- Columna izquierda: Carousel de imágenes -->
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body p-0">
+          <!-- Carousel -->
+          <div id="heroCarousel" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-inner">
+              @for (image of images; track $index) {
+                <div class="carousel-item" [class.active]="$index === currentImageIndex">
+                  <img 
+                    [src]="image" 
+                    class="d-block w-100" 
+                    [alt]="hero.heroname"
+                    style="height: 500px; object-fit: cover;">
+                </div>
+              }
+            </div>
+            
+            <!-- Controles del carousel -->
+            @if (images.length > 1) {
+              <button class="carousel-control-prev" type="button" (click)="previousImage()">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button class="carousel-control-next" type="button" (click)="nextImage()">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+              </button>
+              
+              <!-- Indicadores -->
+              <div class="carousel-indicators">
+                @for (image of images; track $index) {
+                  <button 
+                    type="button" 
+                    [class.active]="$index === currentImageIndex"
+                    (click)="goToImage($index)">
+                  </button>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha: Información del héroe -->
+    <div class="col-md-6">
+      
+      <!-- Información básica -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5 class="mb-0">Información Básica</h5>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <strong>Nombre completo:</strong>
+            <p class="mb-0">{{ hero.fullname }}</p>
+          </div>
+          
+          <div class="mb-3">
+            <strong>Género:</strong>
+            <p class="mb-0">{{ hero.gender }}</p>
+          </div>
+          
+          <div class="mb-3">
+            <strong>Raza:</strong>
+            <p class="mb-0">{{ hero.race }}</p>
+          </div>
+          
+          <div class="mb-0">
+            <strong>Alineación:</strong>
+            <span class="badge ms-2" 
+              [class.bg-success]="hero.alignment === 'good'"
+              [class.bg-danger]="hero.alignment === 'bad'"
+              [class.bg-warning]="hero.alignment === 'neutral'">
+              {{ hero.alignment }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estadísticas (Power Stats) -->
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Estadísticas de Poder</h5>
+        </div>
+        <div class="card-body">
+          
+          <!-- Intelligence -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Intelligence</span>
+              <strong>{{ hero.powerstats.intelligence }}</strong>
+            </div>
+            <div class="progress">
+              <div 
+                class="progress-bar bg-info" 
+                role="progressbar" 
+                [style.width.%]="hero.powerstats.intelligence"
+                [attr.aria-valuenow]="hero.powerstats.intelligence" 
+                aria-valuemin="0" 
+                aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+
+          <!-- Strength -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Strength</span>
+              <strong>{{ hero.powerstats.strength }}</strong>
+            </div>
+            <div class="progress">
+              <div 
+                class="progress-bar bg-danger" 
+                role="progressbar" 
+                [style.width.%]="hero.powerstats.strength"
+                [attr.aria-valuenow]="hero.powerstats.strength" 
+                aria-valuemin="0" 
+                aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+
+          <!-- Speed -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Speed</span>
+              <strong>{{ hero.powerstats.speed }}</strong>
+            </div>
+            <div class="progress">
+              <div 
+                class="progress-bar bg-warning" 
+                role="progressbar" 
+                [style.width.%]="hero.powerstats.speed"
+                [attr.aria-valuenow]="hero.powerstats.speed" 
+                aria-valuemin="0" 
+                aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+
+          <!-- Durability -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Durability</span>
+              <strong>{{ hero.powerstats.durability }}</strong>
+            </div>
+            <div class="progress">
+              <div 
+                class="progress-bar bg-success" 
+                role="progressbar" 
+                [style.width.%]="hero.powerstats.durability"
+                [attr.aria-valuenow]="hero.powerstats.durability" 
+                aria-valuemin="0" 
+                aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+
+          <!-- Power -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Power</span>
+              <strong>{{ hero.powerstats.power }}</strong>
+            </div>
+            <div class="progress">
+              <div 
+                class="progress-bar bg-primary" 
+                role="progressbar" 
+                [style.width.%]="hero.powerstats.power"
+                [attr.aria-valuenow]="hero.powerstats.power" 
+                aria-valuemin="0" 
+                aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+
+          <!-- Combat -->
+          <div class="mb-0">
+            <div class="d-flex justify-content-between mb-1">
+              <span>Combat</span>
+              <strong>{{ hero.powerstats.combat }}</strong>
+            </div>
+            <div class="progress">
+              <div 
+                class="progress-bar bg-dark" 
+                role="progressbar" 
+                [style.width.%]="hero.powerstats.combat"
+                [attr.aria-valuenow]="hero.powerstats.combat" 
+                aria-valuemin="0" 
+                aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Loading o Error -->
+<div class="container mt-5" *ngIf="!hero">
+  <div class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+</div>

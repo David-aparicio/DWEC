@@ -55,7 +55,7 @@ public class DCUniverseController {
     password: "soybatman"
     Tiene el rol de ADMIN
     */
-
+@CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         log.debug("A request has arrived to login");

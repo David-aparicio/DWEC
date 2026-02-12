@@ -1,0 +1,144 @@
+<!-- heroes-list.html -->
+<div class="container mt-4">
+  
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+      <h2>Lista de Héroes</h2>
+      <a [routerLink]="['/formulario']" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Nuevo Héroe
+      </a>
+    </div>
+  </div>
+  <!-- Filtros -->
+ <!-- Filtros -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Filtros</h5>
+      <div class="row g-3">
+        
+        <!-- Búsqueda por nombre -->
+        <div class="col-md-4">
+          <label for="searchName" class="form-label">Buscar por nombre</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="searchName"
+            [(ngModel)]="searchName"
+            (ngModelChange)="applyFilters()"
+            placeholder="Nombre del héroe...">
+        </div>
+
+        <!-- Filtro por alineación -->
+        <div class="col-md-3">
+          <label for="alignment" class="form-label">Alineación</label>
+          <select 
+            class="form-select" 
+            id="alignment"
+            [(ngModel)]="selectedAlignment"
+            (ngModelChange)="applyFilters()">
+            <option value="">Todas</option>
+            <option value="good">Bueno</option>
+            <option value="bad">Malo</option>
+            <option value="neutral">Neutral</option>
+          </select>
+        </div>
+
+        <!-- Filtro por género -->
+        <div class="col-md-3">
+          <label for="gender" class="form-label">Género</label>
+          <select 
+            class="form-select" 
+            id="gender"
+            [(ngModel)]="selectedGender"
+            (ngModelChange)="applyFilters()">
+            <option value="">Todos</option>
+            <option value="Male">Masculino</option>
+            <option value="Female">Femenino</option>
+          </select>
+        </div>
+
+        <!-- Filtro por poder mínimo -->
+        <div class="col-md-2">
+          <label for="minPower" class="form-label">Poder mínimo: {{ minPower }}</label>
+          <input 
+            type="range" 
+            class="form-range" 
+            id="minPower"
+            [(ngModel)]="minPower"
+            (ngModelChange)="applyFilters()"
+            min="0" 
+            max="100">
+        </div>
+
+      </div>
+      
+      <!-- Botón resetear -->
+      <div class="row mt-3">
+        <div class="col-12">
+          <button class="btn btn-secondary btn-sm" (click)="resetFilters()">
+            <i class="bi bi-x-circle"></i> Limpiar filtros
+          </button>
+          <span class="ms-3 text-muted">
+            {{ heroesFiltered.length }} héroe(s) encontrado(s)
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Grid de Cards -->
+  <div class="row">
+    @for (hero of heroesFiltered; track hero.id) {
+      <div class="col-md-4 col-lg-3 mb-4">
+        <app-hero-card [hero]="hero"></app-hero-card>
+      </div>
+    } @empty {
+      <div class="col-12">
+        <div class="alert alert-info text-center">
+          <i class="bi bi-info-circle"></i>
+          No hay héroes disponibles
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Paginación -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <nav aria-label="Paginación de héroes">
+        <ul class="pagination justify-content-center">
+          
+          <!-- Botón Anterior -->
+          <li class="page-item" [class.disabled]="isFirst">
+            <button class="page-link" (click)="previousPage()" [disabled]="isFirst">
+              <i class="bi bi-chevron-left"></i> Anterior
+            </button>
+          </li>
+          
+          <!-- Números de página -->
+          @for (page of pages; track page) {
+            <li class="page-item" [class.active]="currentPage === page">
+              <button class="page-link" (click)="goToPage(page)">
+                {{ page + 1 }}
+              </button>
+            </li>
+          }
+          
+          <!-- Botón Siguiente -->
+          <li class="page-item" [class.disabled]="isLast">
+            <button class="page-link" (click)="nextPage()" [disabled]="isLast">
+              Siguiente <i class="bi bi-chevron-right"></i>
+            </button>
+          </li>
+          
+        </ul>
+      </nav>
+      
+      <!-- Info de paginación -->
+      <p class="text-center text-muted">
+        Página {{ currentPage + 1 }} de {{ totalPages }} 
+        ({{ totalElements }} héroes en total)
+      </p>
+    </div>
+  </div>
+</div>
