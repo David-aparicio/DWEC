@@ -1,9 +1,10 @@
-<div class="container mt-5">
+<div class="container mt-3 ">
+    <div>
     <div class="row">
         <div class="col-12">
             <h2 class="mb-4">{{ isNew ? 'Crear Héroe' : 'Editar Héroe' }}</h2>
 
-            <form [formGroup]="heroForm" (ngSubmit)="getDataForm()">
+            <form [formGroup]="ninjaForm" (ngSubmit)="getDataForm()">
 
                 <!-- Sección: Información Básica -->
                 <div class="card mb-4">
@@ -13,15 +14,21 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="heroname" class="form-label">Nombre del Héroe</label>
-                                <input id="heroname" type="text" class="form-control" formControlName="heroname"
-                                    placeholder="Ej: Aquaman">
+                                <label for="ninjaname" class="form-label">Nombre del Ninja</label>
+                                <input id="ninjaname" type="text" class="form-control" formControlName="ninjaname"
+                                    placeholder="Ej: Madara">
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label for="fullname" class="form-label">Nombre Completo</label>
                                 <input id="fullname" type="text" class="form-control" formControlName="fullname"
-                                    placeholder="Ej: Arthur Curry">
+                                    placeholder="Ej: David Aparicio">
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="clan" class="form-label">Clan</label>
+                                <input id="clan" type="text" class="form-control" formControlName="clan"
+                                    placeholder="Ej: DAW">
                             </div>
 
                             <div class="col-md-6 mb-3">
@@ -37,15 +44,15 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="image3" class="form-label">Imagen3</label>
-                                <input id="image3" type="text" class="form-control" formControlName="image3"
-                                    placeholder="URL">
+                                <label for="naturetype" class="form-label">naturetype</label>
+                                <input id="naturetype" type="text" class="form-control" formControlName="naturetype"
+                                    placeholder="naturetype">
                             </div>
 
                             <div class="col-md-12 mb-3">
-                                <label for="race" class="form-label">Raza</label>
-                                <input id="race" type="text" class="form-control" formControlName="race"
-                                    placeholder="Ej: Atlantean">
+                                <label for="affiliation" class="form-label">affiliation</label>
+                                <input id="affiliation" type="text" class="form-control" formControlName="affiliation"
+                                    placeholder="affiliation">
                             </div>
                         </div>
                     </div>
@@ -69,30 +76,40 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="alignment" class="form-label">Alineación</label>
-                                <select id="alignment" class="form-select" formControlName="alignment">
-                                    <option value="">Seleccione...</option>
-                                    <option value="good">Bueno</option>
-                                    <option value="bad">Malo</option>
-                                    <option value="neutral">Neutro</option>
-                                </select>
+                                <label for="level" class="form-label">level</label>
+                                <input id="level" type="text" class="form-control" formControlName="level"
+                                    placeholder="level">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Sección: Estadísticas de Poder -->
-                <div class="card mb-4" formGroupName="powerstats">
+                <div class="card mb-4" formGroupName="stats">
                     <div class="card-header">
                         <h5 class="mb-0">Estadísticas de Poder</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
+
+                            <div class="col-md-4 mb-3">
+                                <label for="ninjutsu" class="form-label">ninjutsu</label>
+                                <input id="ninjutsu" type="number" class="form-control"
+                                    formControlName="ninjutsu" min="0" max="100">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="taijutsu" class="form-label">taijutsu</label>
+                                <input id="taijutsu" type="number" class="form-control" formControlName="taijutsu"
+                                    min="0" max="100">
+                            </div>
+
                             <div class="col-md-4 mb-3">
                                 <label for="intelligence" class="form-label">Intelligence</label>
                                 <input id="intelligence" type="number" class="form-control"
                                     formControlName="intelligence" min="0" max="100">
                             </div>
+
 
                             <div class="col-md-4 mb-3">
                                 <label for="strength" class="form-label">Strength</label>
@@ -106,26 +123,22 @@
                                     max="100">
                             </div>
 
-                            <div class="col-md-4 mb-3">
-                                <label for="durability" class="form-label">Durability</label>
-                                <input id="durability" type="number" class="form-control" formControlName="durability"
-                                    min="0" max="100">
-                            </div>
+
 
                             <div class="col-md-4 mb-3">
-                                <label for="power" class="form-label">Power</label>
-                                <input id="power" type="number" class="form-control" formControlName="power" min="0"
+                                <label for="stamina" class="form-label">stamina</label>
+                                <input id="stamina" type="number" class="form-control" formControlName="stamina" min="0"
                                     max="100">
                             </div>
 
                             <div class="col-md-4 mb-3">
-                                <label for="combat" class="form-label">Combat</label>
-                                <input id="combat" type="number" class="form-control" formControlName="combat" min="0"
+                                <label for="handseals" class="form-label">handseals</label>
+                                <input id="handseals" type="number" class="form-control" formControlName="handseals" min="0"
                                     max="100">
                             </div>
                         </div>
                     </div>
-                </div>
+                
 
                 <!-- Botones de acción -->
                 <div class="d-flex justify-content-end gap-2">
@@ -135,11 +148,11 @@
                     <button type="button" class="btn btn-warning " (click)="onReset()">
                         Resetear
                     </button>
-                    <button type="submit" [disabled]="heroForm.invalid" class="btn btn-primary">
-                        {{ isNew ? 'Crear Héroe' : 'Actualizar Héroe' }}
+                    <button type="submit" [disabled]="ninjaForm.invalid" class="btn btn-primary">
+                        {{ isNew ? 'Crear Ninja' : 'Actualizar Ninja' }}
                     </button>
                 </div>
-
+</div>
             </form>
         </div>
     </div>

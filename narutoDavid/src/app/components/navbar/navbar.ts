@@ -4,7 +4,6 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
   imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
@@ -12,13 +11,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 export class Navbar {
   router = inject(Router);
 
-    // Obtener usuario del localStorage
-  //get username(): string {
-    //return localStorage.getItem('username') || 'Usuario';
-  //}
-
-  // Verificar si está logueado
-  get isLoggedIn(): boolean {
+   get isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
   
@@ -31,7 +24,7 @@ export class Navbar {
       //localStorage.removeItem('username');
       
       // Redirigir al login
-      this.router.navigate(['/landinpage']);
+      this.router.navigate(['/landinPage']);
     }
   }
 }
